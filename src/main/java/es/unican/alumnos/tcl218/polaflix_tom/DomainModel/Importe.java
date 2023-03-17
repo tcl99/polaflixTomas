@@ -21,7 +21,7 @@ public class Importe {
             case "Estandar":
                 this.cargo = 0.50f;
                 break;
-            case "Silver":
+            case "Silver": 
                 this.cargo = 0.75f;
                 break;
             case "Gold":
