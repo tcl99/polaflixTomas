@@ -8,10 +8,9 @@ public class VisualizacionCapitulo {
 
     //CONSTRUCTORS
 
-    public VisualizacionCapitulo(int tiempoVisionado, int duracion, String estado) {
+    public VisualizacionCapitulo(int tiempoVisionado, int duracion) {
         this.tiempoVisionado = tiempoVisionado;
         this.duracion = duracion;
-        this.estado = estado;
     }
 
     //GETTERS & SETTERS
@@ -39,7 +38,6 @@ public class VisualizacionCapitulo {
     }
 
 
-
     public String getEstado() {
         if(tiempoVisionado == 0) estado = "Pendiente";
         else if(tiempoVisionado >= duracion*0.95) estado = "Visto";
@@ -52,7 +50,6 @@ public class VisualizacionCapitulo {
     //OPERATIONS
 
     public int tiempoRestante() {
-
         return 0;
     }
 }

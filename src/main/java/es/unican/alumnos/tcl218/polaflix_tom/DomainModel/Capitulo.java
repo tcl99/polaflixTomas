@@ -8,7 +8,7 @@ public class Capitulo {
     private String titulo;
     private String descripcion;
     private String enlace;
-    private Date fechaVisualizacion;
+    private Date fechaVisualizacion; //En duda
     private VisualizacionCapitulo vc;
 
     //CONSTRUCTORS

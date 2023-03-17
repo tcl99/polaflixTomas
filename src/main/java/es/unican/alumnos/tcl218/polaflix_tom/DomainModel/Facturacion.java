@@ -25,16 +25,16 @@ public class Facturacion {
 
     //OPERATIONS
 
-    public void mostrarMes() {
+    public void mostrarMes(Factura f) {
 
     }
 
-    public void avanzarMes() {
-
+    public Factura avanzarMes(Set<Factura> facturas) {
+        return null;
     }
 
-    public void retrocederMes() {
-
+    public Factura retrocederMes(Set<Factura> facturas) {
+        return null;
     }
 
 }

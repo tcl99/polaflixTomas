@@ -1,1 +1,3 @@
 # polaflixTomas
+
+@Component extends CommandLineRunner

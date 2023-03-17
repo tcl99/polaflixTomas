@@ -3,6 +3,8 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel;
 import java.util.Set;
 
 public class Usuario {
+
+    //TODO
     
     private String idUsuario;
     private String contrasena;

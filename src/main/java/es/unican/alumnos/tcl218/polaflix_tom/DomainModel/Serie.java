@@ -44,17 +44,14 @@ public class Serie {
 
     //OPERATIONS
 
-    public void mostrarCategoria(Serie s) {
-
-    }
 
     public void verCapitulo(Capitulo c) {
-
+        //Play
     }
 
-    public void mostrarInfoCapitulo(Capitulo c) {
-
-    }
+    public String mostrarInfoCapitulo(Capitulo c) {
+        return c.getDescripcion();
+    } //En duda
 
 
 }
