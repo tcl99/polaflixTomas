@@ -49,9 +49,44 @@ public class Serie {
         //Play
     }
 
-    public String mostrarInfoCapitulo(Capitulo c) {
-        return c.getDescripcion();
-    } //En duda
+    //hashCode & equals
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((temporadas == null) ? 0 : temporadas.hashCode());
+        result = prime * result + ((info == null) ? 0 : info.hashCode());
+        result = prime * result + ((etiqueta == null) ? 0 : etiqueta.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Serie other = (Serie) obj;
+        if (temporadas == null) {
+            if (other.temporadas != null)
+                return false;
+        } else if (!temporadas.equals(other.temporadas))
+            return false;
+        if (info == null) {
+            if (other.info != null)
+                return false;
+        } else if (!info.equals(other.info))
+            return false;
+        if (etiqueta == null) {
+            if (other.etiqueta != null)
+                return false;
+        } else if (!etiqueta.equals(other.etiqueta))
+            return false;
+        return true;
+    }
 
 
 }

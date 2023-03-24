@@ -56,7 +56,36 @@ public class Catalogo {
         return s;
     }
 
-    public void mostrarInfoSerie() {
-
+    public void mostrarInfoSerie(Serie s) {
+        s.getInfo(); //dudas
     }
+
+    //hashCode & equals
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((series == null) ? 0 : series.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Catalogo other = (Catalogo) obj;
+        if (series == null) {
+            if (other.series != null)
+                return false;
+        } else if (!series.equals(other.series))
+            return false;
+        return true;
+    }
+
+    
 }

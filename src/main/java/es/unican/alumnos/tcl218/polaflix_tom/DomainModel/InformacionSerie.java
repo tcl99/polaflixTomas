@@ -73,6 +73,63 @@ public class InformacionSerie {
         this.actores = actores;
     }
 
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((titulo == null) ? 0 : titulo.hashCode());
+        result = prime * result + ((categoria == null) ? 0 : categoria.hashCode());
+        result = prime * result + ((genero == null) ? 0 : genero.hashCode());
+        result = prime * result + ((descripcion == null) ? 0 : descripcion.hashCode());
+        result = prime * result + ((creadores == null) ? 0 : creadores.hashCode());
+        result = prime * result + ((actores == null) ? 0 : actores.hashCode());
+        return result;
+    }
+
+    //hashCode & equals
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        InformacionSerie other = (InformacionSerie) obj;
+        if (titulo == null) {
+            if (other.titulo != null)
+                return false;
+        } else if (!titulo.equals(other.titulo))
+            return false;
+        if (categoria == null) {
+            if (other.categoria != null)
+                return false;
+        } else if (!categoria.equals(other.categoria))
+            return false;
+        if (genero == null) {
+            if (other.genero != null)
+                return false;
+        } else if (!genero.equals(other.genero))
+            return false;
+        if (descripcion == null) {
+            if (other.descripcion != null)
+                return false;
+        } else if (!descripcion.equals(other.descripcion))
+            return false;
+        if (creadores == null) {
+            if (other.creadores != null)
+                return false;
+        } else if (!creadores.equals(other.creadores))
+            return false;
+        if (actores == null) {
+            if (other.actores != null)
+                return false;
+        } else if (!actores.equals(other.actores))
+            return false;
+        return true;
+    }
+
     
 }
 

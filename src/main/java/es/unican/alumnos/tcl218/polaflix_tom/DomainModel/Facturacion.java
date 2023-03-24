@@ -37,4 +37,33 @@ public class Facturacion {
         return null;
     }
 
+    //hashCode & equals
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((f == null) ? 0 : f.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Facturacion other = (Facturacion) obj;
+        if (f == null) {
+            if (other.f != null)
+                return false;
+        } else if (!f.equals(other.f))
+            return false;
+        return true;
+    }
+
+
+    
 }
