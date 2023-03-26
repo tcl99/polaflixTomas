@@ -1,41 +1,46 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 public class Facturacion {
     
-    private Set<Factura> f;
+    private ArrayList<Factura> f;
 
     
     //CONSTRUCTOR
     
-    public Facturacion(Set<Factura> f) {
+    public Facturacion(ArrayList<Factura> f) {
         this.f = f;
     }
 
     //GETTERS & SETTERS
 
-    public Set<Factura> getF() {
+    public ArrayList<Factura> getF() {
         return f;
     }
 
-    public void setF(Set<Factura> f) {
+    public void setF(ArrayList<Factura> f) {
         this.f = f;
     }
 
     //OPERATIONS
 
     public void mostrarMes(Factura f) {
-
+        //Mostrar mes
     }
 
-    public Factura avanzarMes(Set<Factura> facturas) {
+    // Estas dos funciones no se implementan porque se ha decidido que se puede navegar sobre el array directamente sin llamar a funciones
+    /* 
+    
+    public Factura avanzarMes(Factura f) {
         return null;
     }
 
-    public Factura retrocederMes(Set<Factura> facturas) {
+    public Factura retrocederMes(Factura f) {
         return null;
     }
+    
+    */
 
     //hashCode & equals
 
@@ -63,7 +68,4 @@ public class Facturacion {
             return false;
         return true;
     }
-
-
-    
 }
