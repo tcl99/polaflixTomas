@@ -1,6 +1,8 @@
-package es.unican.alumnos.tcl218.polaflix_tom.DomainModel;
+package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
 import java.sql.Date;
+
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 
 
 public class Importe {

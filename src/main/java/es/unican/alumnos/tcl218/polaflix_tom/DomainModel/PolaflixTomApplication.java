@@ -9,5 +9,4 @@ public class PolaflixTomApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PolaflixTomApplication.class, args);
 	}
-
 }

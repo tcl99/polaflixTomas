@@ -2,6 +2,10 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel;
 
 import java.util.Set;
 
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Facturacion;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Catalogo;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
+
 public class Usuario {
     
     private String idUsuario;
