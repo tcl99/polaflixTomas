@@ -4,8 +4,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.OneToMany;
+
+@Embeddable
 public class Catalogo {
     
+    @OneToMany(cascade = CascadeType.ALL) //sujeto a cambios
     private Set <Serie> series;
 
     //CONSTRUCTORS

@@ -2,8 +2,15 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
 import java.util.ArrayList;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
+
+@Embeddable
 public class Facturacion {
     
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ArrayList<Factura> f;
 
     

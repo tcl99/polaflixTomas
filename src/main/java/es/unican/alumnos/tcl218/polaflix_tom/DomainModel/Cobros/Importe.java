@@ -3,11 +3,15 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 import java.sql.Date;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
-
+@Entity
 public class Importe {
 
+    @Id
     private Date fechaVisualizacion;
+
     private String nombreSerie;
     private int nTemporada;
     private int nCapitulo;

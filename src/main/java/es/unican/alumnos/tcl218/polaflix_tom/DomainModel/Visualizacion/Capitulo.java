@@ -2,13 +2,26 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
 import java.sql.Date;
 
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Capitulo {
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    protected long idCapitulo;
+
     private int numero;
     private String titulo;
     private String descripcion;
     private String enlace;
-    private Date fechaVisualizacion; //En duda
+    private Date fechaVisualizacion;
+
+    @Embedded
     private VisualizacionCapitulo vc;
 
     //CONSTRUCTORS

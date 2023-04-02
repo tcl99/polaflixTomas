@@ -1,24 +1,40 @@
-package es.unican.alumnos.tcl218.polaflix_tom.DomainModel;
+package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario;
 
 import java.util.Set;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Facturacion;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Catalogo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
+import jakarta.persistence.Embedded;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
+@Entity
 public class Usuario {
     
+    @Id 
     private String idUsuario;
+    
     private String contrasena;
     private Boolean plan;
     private String IBAN;
+
+    @Embedded
     private Catalogo c;
-    private Set<Serie> empezadas;
-    private Set<Serie> pendientes;
-    private Set<Serie> terminadas;
-    //se ha cambiado esta parte respecto al diagrama, he decidido que el usuario sea quien separe el estado de las series
-    // y que no se haga en la clase series, que puede causar problemas, pues un usuario puede haber visto una serie y otro no
+
+    @Embedded
     private Facturacion facturacion;
+
+    @OneToMany
+    private Set<Serie> empezadas;
+    @OneToMany(fetch = FetchType.LAZY) //sujeto a cambios
+    private Set<Serie> pendientes;
+    @OneToMany(fetch = FetchType.LAZY)
+    private Set<Serie> terminadas;
+
+
     
 
     //GETTERS & SETTERS
@@ -98,17 +114,14 @@ public class Usuario {
     //OPERATIONS
 
     public void autenticacion() {
-        //TODO
         //Ir a interfaz para autenticarse
     }
 
     public void accederEspacioPersonal() {
-        //TODO
         //ir a interfaz del espacio personal
     }
 
     public void verSerie() {
-        //TODO
         //Ir a interfaz de series
     }
 
@@ -117,7 +130,6 @@ public class Usuario {
     }
 
     public void verCargos() {
-        //TODO
         //Ir a interfaz de facturacion
     }
 

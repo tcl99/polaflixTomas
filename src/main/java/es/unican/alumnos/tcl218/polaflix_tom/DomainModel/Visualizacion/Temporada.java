@@ -2,9 +2,24 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
 import java.util.Set;
 
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+@Entity
 public class Temporada {
     
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    protected long idTemporada;
+
     private int numero;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Capitulo> capitulos; //LinkHashedSet
 
     //CONSTRUCTORS

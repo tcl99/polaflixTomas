@@ -2,6 +2,9 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
 import java.util.Set;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class InformacionSerie {
     
     private String titulo;

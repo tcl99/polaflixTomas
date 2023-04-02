@@ -1,5 +1,8 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class VisualizacionCapitulo {
     
     private int tiempoVisionado;
