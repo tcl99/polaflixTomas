@@ -41,7 +41,7 @@
   En este sistema hay únicamente relaciones @OneToMany y no son bidireccionales.
   Tanto en Series, Temporadas y Capítulo como en Facturación y Factura se ha decidido implementar el:
   ```
-    cascade = CascadeType.ALL, 
+  cascade = CascadeType.ALL, 
   ```
   Se busca consistencia, puesto que es esencial que cada elemento de los nombrados, ya sea un Importe o un Capítulo, se guarde y guarde a sus hijos, porque son esenciales para su onjunto, ya sean los Capítulos para las Temporadas, y a su vez a las Series, de la misma forma que Importes, Factura y Facturación
 
