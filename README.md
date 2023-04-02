@@ -25,4 +25,4 @@ Se ha decidido cambiar el tipo de clasificación de DDD en algunas clases:
   - InformacionSerie
   - VisualizacionCapitulo
   - Catalogo
-  - Facturacion
+  - Facturacion 
