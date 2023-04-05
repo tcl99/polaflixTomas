@@ -1,6 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import java.util.Set;
+import java.util.ArrayList;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
@@ -17,7 +17,7 @@ public class Serie {
     protected long idSerie;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<Temporada> temporadas;
+    private ArrayList<Temporada> temporadas;
 
     @Embedded
     private InformacionSerie info;
@@ -26,7 +26,9 @@ public class Serie {
     
     //CONSTRUCTORS
 
-    public Serie(Set<Temporada> temporadas, InformacionSerie info, String etiqueta) {
+    public Serie(){}
+
+    public Serie(ArrayList<Temporada> temporadas, InformacionSerie info, String etiqueta) {
         this.temporadas = temporadas;
         this.info = info;
         this.etiqueta = etiqueta;
@@ -34,11 +36,11 @@ public class Serie {
 
     //GETTERS & SETTERS
 
-    public Set<Temporada> getTemporadas() {
+    public ArrayList<Temporada> getTemporadas() {
         return temporadas;
     }
 
-    public void setTemporadas(Set<Temporada> temporadas) {
+    public void setTemporadas(ArrayList<Temporada> temporadas) {
         this.temporadas = temporadas;
     }
 

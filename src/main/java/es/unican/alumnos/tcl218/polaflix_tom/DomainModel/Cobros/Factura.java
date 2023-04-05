@@ -20,14 +20,25 @@ public class Factura {
     private Set<Importe> importes;
 
 
-    //CONSTRUCTOR
+    //CONSTRUCTORS
+    
+    public Factura() {
+    }
+    
+    public Factura(Date fecha, float importeMensual) {
+        this.fecha = fecha;
+        this.importeMensual = importeMensual;
+    }
+
     public Factura(Date fecha, float importeMensual, Set<Importe> importes) {
         this.fecha = fecha;
         this.importeMensual = importeMensual;
         this.importes = importes;
     }
+    
 
     //GETTERS & SETTERS
+
 
     public float getImporteMensual() {
         return importeMensual;

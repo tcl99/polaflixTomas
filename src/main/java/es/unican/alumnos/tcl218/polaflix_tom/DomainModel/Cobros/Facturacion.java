@@ -15,7 +15,9 @@ public class Facturacion {
 
     
     //CONSTRUCTOR
-    
+    public Facturacion() {
+    }
+
     public Facturacion(ArrayList<Factura> f) {
         this.f = f;
     }

@@ -15,6 +15,8 @@ public class InformacionSerie {
     private Set <String> actores;
 
     //CONSTRUCTOR
+
+    public InformacionSerie(){}
     
     public InformacionSerie(String titulo, String categoria, String genero, String descripcion, Set<String> creadores,
             Set<String> actores) {

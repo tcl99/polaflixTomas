@@ -18,6 +18,10 @@ public class Importe {
     private float cargo;
 
     //CONSTRUCTOR
+    public Importe() {
+
+    }
+    
     public Importe(Date fechaVisualizacion, Serie serie, int nTemporada, int nCapitulo) {
         this.fechaVisualizacion = fechaVisualizacion;
         this.nombreSerie = serie.getInfo().getTitulo();

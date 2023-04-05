@@ -24,6 +24,8 @@ public class Temporada {
 
     //CONSTRUCTORS
 
+    public Temporada() {}
+
     public Temporada(int numero, Set<Capitulo> capitulos) {
         this.numero = numero;
         this.capitulos = capitulos;

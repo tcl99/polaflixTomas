@@ -35,9 +35,20 @@ public class Usuario {
     private Set<Serie> terminadas;
 
 
+    //CONSTRUCTORS
+
+    public Usuario() {}
     
+    public Usuario(String idUsuario, String contrasena, Boolean plan, String iBAN) {
+        this.idUsuario = idUsuario;
+        this.contrasena = contrasena;
+        this.plan = plan;
+        IBAN = iBAN;
+    }
 
     //GETTERS & SETTERS
+
+
 
     public String getIdUsuario() {
         return idUsuario;

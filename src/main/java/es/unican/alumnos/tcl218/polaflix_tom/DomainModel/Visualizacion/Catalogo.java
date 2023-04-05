@@ -15,6 +15,8 @@ public class Catalogo {
     private Set <Serie> series;
 
     //CONSTRUCTORS
+
+    public Catalogo(){}
     
     public Catalogo(Set <Serie> series) {
         this.series = series;
