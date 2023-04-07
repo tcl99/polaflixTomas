@@ -67,8 +67,21 @@ Se ha decidido implementar en aquellos casos en los que se carguen a memoria exc
 
 No se han realizado personalizaciones de momento de ningún tipo, a la espera de consejos y cambios en los errores que haya.
 
+### Repositories
+
+Se ha decidido crear 3 repositorios:
+-Usuario: El que gestionará las transacciones para los usuarios
+-Serie: El que gestionará todo lo relacionado con las series y sus temporadas y capítulos
+-Factura: El que gestionará cada factura con su lista de importes
+
+De momento estos tres se consideran los justos y necesarios para sostener la persistencia del sistema, ya que cada elemento clave tiene su propio repositorio.
+
+Se han añadido los primeros métodos de búsqueda, basados en personalización por nombre, se espera añadir más según vayan surgiendo distintas necesidades
+
 #### Pendiente
 
 -Preguntar por lazy y eager (Temporadas)
 -Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
 -Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
+
+## Servicio: REST
