@@ -5,6 +5,8 @@ import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -12,8 +14,10 @@ import jakarta.persistence.OneToMany;
 public class Factura {
     
     @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    protected long idImporte;
+
     private Date fecha;
-    
     private float importeMensual;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -25,14 +29,12 @@ public class Factura {
     public Factura() {
     }
     
-    public Factura(Date fecha, float importeMensual) {
+    public Factura(Date fecha) {
         this.fecha = fecha;
-        this.importeMensual = importeMensual;
     }
 
-    public Factura(Date fecha, float importeMensual, Set<Importe> importes) {
+    public Factura(Date fecha, Set<Importe> importes) {
         this.fecha = fecha;
-        this.importeMensual = importeMensual;
         this.importes = importes;
     }
     
@@ -42,10 +44,6 @@ public class Factura {
 
     public float getImporteMensual() {
         return importeMensual;
-    }
-
-    public void setImporteMensual(float importeMensual) {
-        this.importeMensual = importeMensual;
     }
 
     public Set<Importe> getImportes() {
