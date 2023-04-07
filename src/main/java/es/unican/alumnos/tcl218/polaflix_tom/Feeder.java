@@ -1,17 +1,24 @@
 package es.unican.alumnos.tcl218.polaflix_tom;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.	util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Factura;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Importe;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario.Usuario;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Temporada;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.FacturaRepository;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.SerieRepository;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
@@ -29,8 +36,8 @@ public class Feeder implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		feedFactura();
 		feedSerie();
+		feedFactura();
 		feedUsuario();
 		
 		test();
@@ -39,22 +46,64 @@ public class Feeder implements CommandLineRunner {
 	}
 
 	private void feedFactura() {
-        Date d = new Date(0);
-		Factura f1 = new Factura(d,10);
+		Factura f1 = new Factura(new Date(0));
+		Set<Importe> importes = new HashSet<Importe>();
+		Importe i1,i2;
+
+		List<Serie> s = sr.findByInfoTituloOrderByInfoTitulo("The Office");
+		Serie serie = s.get(0);
+
+		i1 = new Importe(new Date(System.currentTimeMillis()),serie, serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
+
+		i2 = new Importe(new Date(System.currentTimeMillis()),serie, serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
+
+		importes.add(i1);
+		importes.add(i2);
+		f1.setImportes(importes);
+		f1.calculaImporteMensual(false);
+		
 		fr.save(f1);
+		
 	}
 	
 	private void feedSerie() {
-		Serie c = new Serie(null, new InformacionSerie("kk", null, null, null, null, null) ,"Gold");
+		Set<String> act = new HashSet<>();
+		act.add("Jenna Fischer");
+		act.add("Steve Carrell");
+		act.add("John Krasinski");
+		ArrayList<Temporada> t = new ArrayList<>();
+		for(int i = 1; i<=9; i++) {
+			ArrayList<Capitulo> c = new ArrayList<>();
+			c.add(new Capitulo(22, "Casino Night", null, null, null, new VisualizacionCapitulo()));
+			t.add(new Temporada(i,c));
+		}
+		Serie c = new Serie(t, 
+			new InformacionSerie("The Office", "Gold", "Comedia", "Una serie sobre el día a día en la oficina", null, act));
 		sr.save(c);
 	}
 
 	private void feedUsuario() {
-        Usuario u = new Usuario("socio", "kk", null, null);
-        ur.save(u);
+        Usuario u1 = new Usuario("socio", "kk", false, null);
+		Usuario u2 = new Usuario("JIMBO", "pringao", true, null);
+
+        ur.save(u1);
+		ur.save(u2);
 	}
 	
-	private void test() {
+	private void test() throws InterruptedException {
+
+		/* 
+		Optional<Usuario> u1 = ur.findById("socio");
+		Optional<Usuario> u2 = ur.findById("socio2");
+
+		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
+		else System.out.println("No hay tal");
+		if(u2.isPresent()) System.out.println("Usuario: "+u2.get().getIdUsuario());
+		else System.out.println("No hay tal");
+
+		Thread.sleep(2); */
+
+ 
 		/* 
 		SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy");
 		Date sample = null;
@@ -64,21 +113,6 @@ public class Feeder implements CommandLineRunner {
 			System.out.println("Crujo parseando fecha");
 			e.printStackTrace();
 		}
-		
-		// Set<Viaje> viajes = vr.findByOrigenCiudadAndDestinoCiudad("Santander","Cadiz");
-		Set<Viaje> viajes = vr.findByOrigenAndDestino("Santander","Cadiz");
-		
-		System.out.println("Viajes recuperados = " + viajes.size());
-	
-		for(Viaje v : viajes) {
-			System.out.println("Viaje in " + v.getFecha());
-		}
-		
-		viajes = vr.findByOrigen_CiudadAndFechaBeforeOrderByPrecio("Santander", sample);
-
-		System.out.println("================================");
-		
-		System.out.println("Viajes recuperados = " + viajes.size());
         */
 		
 		
