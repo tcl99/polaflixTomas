@@ -70,3 +70,5 @@ No se han realizado personalizaciones de momento de ningún tipo, a la espera de
 #### Pendiente
 
 -Preguntar por lazy y eager (Temporadas)
+-Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
+-Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
