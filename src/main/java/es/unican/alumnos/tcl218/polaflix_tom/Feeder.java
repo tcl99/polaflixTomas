@@ -1,6 +1,8 @@
 package es.unican.alumnos.tcl218.polaflix_tom;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.	util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -60,7 +62,7 @@ public class Feeder implements CommandLineRunner {
 		importes.add(i1);
 		importes.add(i2);
 		f1.setImportes(importes);
-		f1.calculaImporteMensual(false);
+		f1.calculaImporteMensual(true);
 		
 		fr.save(f1);
 		
@@ -92,19 +94,15 @@ public class Feeder implements CommandLineRunner {
 	
 	private void test() throws InterruptedException {
 
-		/* 
+		 
 		Optional<Usuario> u1 = ur.findById("socio");
-		Optional<Usuario> u2 = ur.findById("socio2");
-
+		Optional<Usuario> u2 = ur.findById("socios");
+ 
 		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
 		else System.out.println("No hay tal");
 		if(u2.isPresent()) System.out.println("Usuario: "+u2.get().getIdUsuario());
 		else System.out.println("No hay tal");
-
-		Thread.sleep(2); */
-
- 
-		/* 
+		 
 		SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy");
 		Date sample = null;
 		try {
@@ -113,9 +111,18 @@ public class Feeder implements CommandLineRunner {
 			System.out.println("Crujo parseando fecha");
 			e.printStackTrace();
 		}
-        */
-		
-		
+        
+	
+		List<Factura> facturas = fr.findByFechaBeforeOrderByFecha(sample); 
+
+		for (Factura f : facturas) {
+			System.out.println(f.getImporteMensual() + " " + f.getFecha());
+			for (Importe i : f.getImportes()) {
+				System.out.println("\t "+i.getCargo()+i.getNombreSerie());
+			}
+		}
+ 
+
 //		Usuario paco = ur.findByEmail("paco@carSharing.es"); 
 //		
 //		System.out.println("Paco = " + paco.getNombre() + ":" + paco.getEmail());
