@@ -2,7 +2,6 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
@@ -12,7 +11,7 @@ import jakarta.persistence.OneToMany;
 public class Catalogo {
     
     @OneToMany(cascade = CascadeType.ALL) //sujeto a cambios
-    private Set <Serie> series;
+    private Set <Serie> series = new HashSet<>();
 
     //CONSTRUCTORS
 
@@ -35,7 +34,7 @@ public class Catalogo {
     //OPERATIONS (this.series)
 
     public Set<Serie> clasificarPorInicial(char inicial) {
-        Set<Serie> match = new TreeSet<>();
+        Set<Serie> match = new HashSet<>();
 
         for (Serie serie : match) {
            if(serie.getInfo().getTitulo().charAt(0) == inicial) {

@@ -1,10 +1,11 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -20,7 +21,7 @@ public class Factura {
     private Date fecha;
     private float importeMensual;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Importe> importes;
 
 

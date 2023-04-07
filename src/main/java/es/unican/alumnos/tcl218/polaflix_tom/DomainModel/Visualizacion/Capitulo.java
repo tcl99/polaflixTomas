@@ -1,6 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import java.sql.Date;
+import java.util.Date;
 
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;

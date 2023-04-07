@@ -1,6 +1,7 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
@@ -10,25 +11,24 @@ import jakarta.persistence.OneToMany;
 @Embeddable
 public class Facturacion {
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private ArrayList<Factura> f;
+    @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY)
+    private List<Factura> f = new ArrayList<>();
 
-    
     //CONSTRUCTOR
     public Facturacion() {
     }
 
-    public Facturacion(ArrayList<Factura> f) {
+    public Facturacion(List<Factura> f) {
         this.f = f;
     }
 
     //GETTERS & SETTERS
 
-    public ArrayList<Factura> getF() {
+    public List<Factura> getF() {
         return f;
     }
 
-    public void setF(ArrayList<Factura> f) {
+    public void setF(List<Factura> f) {
         this.f = f;
     }
 

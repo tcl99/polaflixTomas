@@ -1,5 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Facturacion;
@@ -25,14 +26,14 @@ public class Usuario {
     private Catalogo c;
 
     @Embedded
-    private Facturacion facturacion;
+    private Facturacion f;
 
     @OneToMany
-    private Set<Serie> empezadas;
-    @OneToMany(fetch = FetchType.LAZY) //sujeto a cambios
-    private Set<Serie> pendientes;
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<Serie> terminadas;
+    private Set<Serie> empezadas = new HashSet<>() ;
+    @OneToMany //(fetch = FetchType.LAZY)
+    private Set<Serie> pendientes = new HashSet<>();
+    @OneToMany //(fetch = FetchType.LAZY)
+    private Set<Serie> terminadas = new HashSet<>();
 
 
     //CONSTRUCTORS
@@ -44,11 +45,11 @@ public class Usuario {
         this.contrasena = contrasena;
         this.plan = plan;
         IBAN = iBAN;
+        f = new Facturacion();
+        c = new Catalogo();
     }
 
     //GETTERS & SETTERS
-
-
 
     public String getIdUsuario() {
         return idUsuario;
@@ -115,11 +116,11 @@ public class Usuario {
     }
 
     public Facturacion getFacturacion() {
-        return facturacion;
+        return f;
     }
 
     public void setFacturacion(Facturacion facturacion) {
-        this.facturacion = facturacion;
+        this.f = facturacion;
     }
 
     //OPERATIONS
@@ -158,7 +159,7 @@ public class Usuario {
         result = prime * result + ((empezadas == null) ? 0 : empezadas.hashCode());
         result = prime * result + ((pendientes == null) ? 0 : pendientes.hashCode());
         result = prime * result + ((terminadas == null) ? 0 : terminadas.hashCode());
-        result = prime * result + ((facturacion == null) ? 0 : facturacion.hashCode());
+        result = prime * result + ((f == null) ? 0 : f.hashCode());
         return result;
     }
 
@@ -211,10 +212,10 @@ public class Usuario {
                 return false;
         } else if (!terminadas.equals(other.terminadas))
             return false;
-        if (facturacion == null) {
-            if (other.facturacion != null)
+        if (f == null) {
+            if (other.f != null)
                 return false;
-        } else if (!facturacion.equals(other.facturacion))
+        } else if (!f.equals(other.f))
             return false;
         return true;
     }
