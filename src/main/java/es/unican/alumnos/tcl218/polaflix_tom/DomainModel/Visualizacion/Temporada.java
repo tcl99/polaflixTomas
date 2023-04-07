@@ -1,6 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -12,21 +12,20 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Temporada {
-    
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     protected long idTemporada;
 
     private int numero;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Set<Capitulo> capitulos; //LinkHashedSet
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Capitulo> capitulos; 
 
     //CONSTRUCTORS
 
     public Temporada() {}
 
-    public Temporada(int numero, Set<Capitulo> capitulos) {
+    public Temporada(int numero, List<Capitulo> capitulos) {
         this.numero = numero;
         this.capitulos = capitulos;
     }
@@ -41,11 +40,11 @@ public class Temporada {
         this.numero = numero;
     }
 
-    public Set<Capitulo> getCapitulos() {
+    public List<Capitulo> getCapitulos() {
         return capitulos;
     }
 
-    public void setCapitulos(Set<Capitulo> capitulos) {
+    public void setCapitulos(List<Capitulo> capitulos) {
         this.capitulos = capitulos;
     }
 

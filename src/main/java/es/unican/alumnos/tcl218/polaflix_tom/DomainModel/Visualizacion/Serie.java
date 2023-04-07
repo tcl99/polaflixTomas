@@ -1,10 +1,11 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,31 +17,28 @@ public class Serie {
     @GeneratedValue(strategy=GenerationType.AUTO)
     protected long idSerie;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private ArrayList<Temporada> temporadas;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Temporada> temporadas;
 
     @Embedded
     private InformacionSerie info;
-    
-    private String etiqueta;
     
     //CONSTRUCTORS
 
     public Serie(){}
 
-    public Serie(ArrayList<Temporada> temporadas, InformacionSerie info, String etiqueta) {
+    public Serie(List<Temporada> temporadas, InformacionSerie info) {
         this.temporadas = temporadas;
         this.info = info;
-        this.etiqueta = etiqueta;
     }
 
     //GETTERS & SETTERS
 
-    public ArrayList<Temporada> getTemporadas() {
+    public List<Temporada> getTemporadas() {
         return temporadas;
     }
 
-    public void setTemporadas(ArrayList<Temporada> temporadas) {
+    public void setTemporadas(List<Temporada> temporadas) {
         this.temporadas = temporadas;
     }
 
@@ -50,14 +48,6 @@ public class Serie {
 
     public void setInfo(InformacionSerie info) {
         this.info = info;
-    }
-
-    public String getEtiqueta() {
-        return etiqueta;
-    }
-
-    public void setEtiqueta(String etiqueta) {
-        this.etiqueta = etiqueta;
     }
 
     //OPERATIONS
@@ -75,7 +65,6 @@ public class Serie {
         int result = 1;
         result = prime * result + ((temporadas == null) ? 0 : temporadas.hashCode());
         result = prime * result + ((info == null) ? 0 : info.hashCode());
-        result = prime * result + ((etiqueta == null) ? 0 : etiqueta.hashCode());
         return result;
     }
 
@@ -97,11 +86,6 @@ public class Serie {
             if (other.info != null)
                 return false;
         } else if (!info.equals(other.info))
-            return false;
-        if (etiqueta == null) {
-            if (other.etiqueta != null)
-                return false;
-        } else if (!etiqueta.equals(other.etiqueta))
             return false;
         return true;
     }
