@@ -59,7 +59,7 @@ public class Catalogo {
     }
 
     public Serie agregarSerie() {
-        Serie s = new Serie(null, null, null);
+        Serie s = new Serie(null, null);
         //DEvolver serie para que el usuario guarde;
         return s;
     }
