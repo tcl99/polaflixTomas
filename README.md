@@ -9,10 +9,13 @@ Se ha cambiado de un único conjunto de Series en Usuario a tres, he decidido qu
 - Cambiadas visibilidades de los constructores vacios a **protected**
 - Tipo de parámetros cambiados a interfaces generales (~~ArrayList~~ --> List)
 - HashCode y equals optimizados (solo hace falta realizarlos con los campos ID, que son únicos para cada instancia)
+- Ahora agregarSerie() comprueba que la serie que se agregue a pendientes no esté empezada o terminada
+- Operaciones no relacionadas con el modelo de dominio (interfaces) eliminadas
 
 ### Pendiente
 
-- Fallos graves
+- No hay consistencia en el uso de private y protected para la visibilidad de las propiedades .
+- Duda sobre la validez de getEstado en VisualizacionCapitulo (El capitulo se puede desmarcar como visto?)
 
 ## Actualización JPA
 
@@ -67,13 +70,13 @@ cascade = CascadeType.ALL,
 
 Se busca consistencia, puesto que es esencial que cada elemento de los nombrados, ya sea un Importe o un Capítulo, se guarde y guarde a sus hijos, porque son esenciales para su conjunto, ya sean los Capítulos para las Temporadas, y a su vez a las Series, de la misma forma que Importes, Factura y Facturación
 
-La característica:
+(**ANTES**) La característica:
 
 ```
 fetch = FetchType.LAZY
 ```
 
-(**Cambio**) Antes se utilizaba esta característica, pero por problemas y mal uso, se ha decido eliminar. Se ha decidido no poner nada o en casos concretos utilizar:
+(**DESPUÉS**) Por problemas y mal uso relacionados con la anterior, se ha decido eliminar. Se ha decidido no poner nada o en casos concretos utilizar:
 
 ```
 fetch = FetchType.EAGER
@@ -95,17 +98,17 @@ Se han añadido los primeros métodos de búsqueda, basados en personalización 
 
 #### Dudas a preguntar
 
-- Preguntar por lazy y eager (Temporadas)
+- Preguntar por lazy y eager
 - Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
 - Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
 
 ### Correciones de la revisión
 
 - Eliminada la característica de FetchType.LAZY de todo el código (Al probar el feeder daba problemas)
+- Se ha cambiado las relaciones de las series en Usuario y Catalogo (~~@OneToMany~~ --> @ManyToMany), ya que las series pueden estar agregadas por más de un usuario a la vez
 
 ### Pendiente
 
-- Revisar relaciones
 - Revisar tema de embeddables (Catalogo y Facturacion)
 
 ## Servicio: REST

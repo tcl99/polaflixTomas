@@ -10,7 +10,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Usuario {
@@ -28,11 +28,11 @@ public class Usuario {
     @Embedded
     private Facturacion f;
 
-    @OneToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Serie> empezadas = new HashSet<>() ;
-    @OneToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Serie> pendientes = new HashSet<>();
-    @OneToMany 
+    @ManyToMany(fetch = FetchType.EAGER) 
     private Set<Serie> terminadas = new HashSet<>();
 
 
@@ -123,6 +123,10 @@ public class Usuario {
 
     //OPERATIONS
 
+    /* 
+    
+    De momento estas operaciones no han de estar aquí, pero se comentan para acordarme después de ponerlas en otro sitio 
+
     public void autenticacion() {
         //Ir a interfaz para autenticarse
     }
@@ -135,13 +139,17 @@ public class Usuario {
         //Ir a interfaz de series
     }
 
-    public void agregarSerie(Serie s) {
-        pendientes.add(s);
-    }
-
     public void verCargos() {
         //Ir a interfaz de facturacion
     }
+
+    */
+    
+    public void agregarSerie(Serie s) {
+        if(terminadas.contains(s) || empezadas.contains(s)) return;
+        else pendientes.add(s);
+    }
+
 
     //hashCode & equals
 

@@ -32,10 +32,15 @@ public class Facturacion {
 
     //OPERATIONS
 
+    /*
+    
+    De momento estas operaciones no han de estar aquí, pero se comentan para acordarme después de ponerlas en otro sitio 
+
     public void mostrarMes(Factura f) {
         //Mostrar mes
     }
 
+    */
     //hashCode & equals
 
     @Override
