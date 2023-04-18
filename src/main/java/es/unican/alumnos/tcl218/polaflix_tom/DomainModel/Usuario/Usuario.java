@@ -8,6 +8,7 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Catalogo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -29,7 +30,7 @@ public class Usuario {
 
     @OneToMany
     private Set<Serie> empezadas = new HashSet<>() ;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     private Set<Serie> pendientes = new HashSet<>();
     @OneToMany 
     private Set<Serie> terminadas = new HashSet<>();
