@@ -8,7 +8,6 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Catalogo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
@@ -30,23 +29,21 @@ public class Usuario {
 
     @OneToMany
     private Set<Serie> empezadas = new HashSet<>() ;
-    @OneToMany //(fetch = FetchType.LAZY)
+    @OneToMany
     private Set<Serie> pendientes = new HashSet<>();
-    @OneToMany //(fetch = FetchType.LAZY)
+    @OneToMany 
     private Set<Serie> terminadas = new HashSet<>();
 
 
     //CONSTRUCTORS
 
-    public Usuario() {}
+    protected Usuario() {}
     
     public Usuario(String idUsuario, String contrasena, Boolean plan, String iBAN) {
         this.idUsuario = idUsuario;
         this.contrasena = contrasena;
         this.plan = plan;
         IBAN = iBAN;
-        f = new Facturacion();
-        c = new Catalogo();
     }
 
     //GETTERS & SETTERS

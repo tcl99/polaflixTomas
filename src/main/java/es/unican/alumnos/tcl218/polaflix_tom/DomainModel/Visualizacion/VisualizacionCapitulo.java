@@ -11,7 +11,7 @@ public class VisualizacionCapitulo {
 
     //CONSTRUCTORS
 
-    public VisualizacionCapitulo(){}
+    protected VisualizacionCapitulo(){}
 
     public VisualizacionCapitulo(int tiempoVisionado, int duracion) {
         this.tiempoVisionado = tiempoVisionado;

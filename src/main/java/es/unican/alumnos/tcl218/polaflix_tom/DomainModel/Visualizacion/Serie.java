@@ -25,7 +25,7 @@ public class Serie {
     
     //CONSTRUCTORS
 
-    public Serie(){}
+    protected Serie(){}
 
     public Serie(List<Temporada> temporadas, InformacionSerie info) {
         this.temporadas = temporadas;

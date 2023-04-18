@@ -76,7 +76,7 @@ public class Feeder implements CommandLineRunner {
 		ArrayList<Temporada> t = new ArrayList<>();
 		for(int i = 1; i<=9; i++) {
 			ArrayList<Capitulo> c = new ArrayList<>();
-			c.add(new Capitulo(22, "Casino Night", null, null, null, new VisualizacionCapitulo()));
+			c.add(new Capitulo(22, "Casino Night", null, null, null, new VisualizacionCapitulo(1,1)));
 			t.add(new Temporada(i,c));
 		}
 		Serie c = new Serie(t, 

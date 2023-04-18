@@ -22,9 +22,7 @@ public class Importe {
     private float cargo;
 
     //CONSTRUCTOR
-    public Importe() {
-
-    }
+    protected Importe() {}
     
     public Importe(Date fechaVisualizacion, Serie serie, int nTemporada, int nCapitulo) {
         this.fechaVisualizacion = fechaVisualizacion;

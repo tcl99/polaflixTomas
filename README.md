@@ -4,6 +4,16 @@
 
 Se ha cambiado de un único conjunto de Series en Usuario a tres, he decidido que el usuario sea quien separe el estado de las series y que no se haga en la clase Series, que puede causar problemas, pues un Usuario puede haber visto una serie y otro no
 
+### Correciones de la revisión
+
+- Cambiadas visibilidades de los constructores vacios a **protected**
+- Tipo de parámetros cambiados a interfaces generales (~~ArrayList~~ --> List)
+
+### Pendiente
+
+- Revisar hashcodes y equals
+- Fallos graves
+
 ## Actualización JPA
 
 Se ha decidido cambiar el tipo de clasificación de DDD en algunas clases:
@@ -63,25 +73,39 @@ La característica:
 fetch = FetchType.LAZY
 ```
 
-Se ha decidido implementar en aquellos casos en los que se carguen a memoria exclusivamente cuando sean demandados, en este caso los Capítulos en Temporada y las Facturas de Facturación, así como las series pendientes o terminadas, que se cree que serán menos demandas que las empezadas.
+(__Cambio__) Antes se utilizaba esta característica, pero por problemas y mal uso, se ha decido eliminar. Se ha decidido no poner nada o en casos concretos utilizar:
+
+```
+fetch = FetchType.EAGER
+```
 
 No se han realizado personalizaciones de momento de ningún tipo, a la espera de consejos y cambios en los errores que haya.
 
 ### Repositories
 
 Se ha decidido crear 3 repositorios:
--Usuario: El que gestionará las transacciones para los usuarios
--Serie: El que gestionará todo lo relacionado con las series y sus temporadas y capítulos
--Factura: El que gestionará cada factura con su lista de importes
+- Usuario: El que gestionará las transacciones para los usuarios
+- Serie: El que gestionará todo lo relacionado con las series y sus temporadas y capítulos
+- Factura: El que gestionará cada factura con su lista de importes
 
 De momento estos tres se consideran los justos y necesarios para sostener la persistencia del sistema, ya que cada elemento clave tiene su propio repositorio.
 
 Se han añadido los primeros métodos de búsqueda, basados en personalización por nombre, se espera añadir más según vayan surgiendo distintas necesidades
 
-#### Pendiente
+#### Dudas a preguntar
 
--Preguntar por lazy y eager (Temporadas)
--Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
--Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
+- Preguntar por lazy y eager (Temporadas)
+- Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
+- Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
+
+
+### Correciones de la revisión
+
+- Eliminada la característica de FetchType.LAZY de todo el código (Al probar el feeder daba problemas)
+
+### Pendiente
+
+- Revisar relaciones
+- Revisar tema de embeddables (Catalogo y Facturacion)
 
 ## Servicio: REST

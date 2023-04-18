@@ -26,7 +26,7 @@ public class Capitulo {
 
     //CONSTRUCTORS
 
-    public Capitulo(){}
+    protected Capitulo(){}
 
     public Capitulo(int numero, String titulo, String descripcion, String enlace, Date fechaVisualizacion, VisualizacionCapitulo vc) {
         this.numero = numero;

@@ -27,8 +27,7 @@ public class Factura {
 
     //CONSTRUCTORS
     
-    public Factura() {
-    }
+    protected Factura() {}
     
     public Factura(Date fecha) {
         this.fecha = fecha;

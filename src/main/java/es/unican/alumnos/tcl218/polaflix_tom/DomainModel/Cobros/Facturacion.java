@@ -5,18 +5,16 @@ import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.OneToMany;
 
 @Embeddable
 public class Facturacion {
     
-    @OneToMany(cascade = CascadeType.ALL)//, fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Factura> f = new ArrayList<>();
 
     //CONSTRUCTOR
-    public Facturacion() {
-    }
+    protected Facturacion() {}
 
     public Facturacion(List<Factura> f) {
         this.f = f;
@@ -37,19 +35,6 @@ public class Facturacion {
     public void mostrarMes(Factura f) {
         //Mostrar mes
     }
-
-    // Estas dos funciones no se implementan porque se ha decidido que se puede navegar sobre el array directamente sin llamar a funciones
-    /* 
-    
-    public Factura avanzarMes(Factura f) {
-        return null;
-    }
-
-    public Factura retrocederMes(Factura f) {
-        return null;
-    }
-    
-    */
 
     //hashCode & equals
 

@@ -23,7 +23,7 @@ public class Temporada {
 
     //CONSTRUCTORS
 
-    public Temporada() {}
+    protected Temporada() {}
 
     public Temporada(int numero, List<Capitulo> capitulos) {
         this.numero = numero;
