@@ -96,7 +96,7 @@ public class Feeder implements CommandLineRunner {
 
 		 
 		Optional<Usuario> u1 = ur.findById("socio");
-		Optional<Usuario> u2 = ur.findById("socios");
+		Optional<Usuario> u2 = ur.findById("JIMBO");
  
 		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
 		else System.out.println("No hay tal");
@@ -129,7 +129,9 @@ public class Feeder implements CommandLineRunner {
 
 		for (Serie s : series ) {
 			u1.get().agregarSerie(s);
+			u2.get().agregarSerie(s);
 		}
 		ur.save(u1.get());
+		ur.save(u2.get());
 	}
 }

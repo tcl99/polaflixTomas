@@ -5,12 +5,12 @@ import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Embeddable
 public class Catalogo {
     
-    @OneToMany(cascade = CascadeType.ALL) //sujeto a cambios
+    @ManyToMany(cascade = CascadeType.ALL) //sujeto a cambios
     private Set <Serie> series = new HashSet<>();
 
     //CONSTRUCTORS
