@@ -8,10 +8,10 @@ Se ha cambiado de un único conjunto de Series en Usuario a tres, he decidido qu
 
 - Cambiadas visibilidades de los constructores vacios a **protected**
 - Tipo de parámetros cambiados a interfaces generales (~~ArrayList~~ --> List)
+- HashCode y equals optimizados (solo hace falta realizarlos con los campos ID, que son únicos para cada instancia)
 
 ### Pendiente
 
-- Revisar hashcodes y equals(contemplar solo el id)
 - Fallos graves
 
 ## Actualización JPA

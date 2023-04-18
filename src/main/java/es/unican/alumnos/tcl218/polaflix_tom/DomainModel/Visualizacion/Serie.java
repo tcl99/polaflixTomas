@@ -63,8 +63,7 @@ public class Serie {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((temporadas == null) ? 0 : temporadas.hashCode());
-        result = prime * result + ((info == null) ? 0 : info.hashCode());
+        result = prime * result + (int) (idSerie ^ (idSerie >>> 32));
         return result;
     }
 
@@ -77,15 +76,7 @@ public class Serie {
         if (getClass() != obj.getClass())
             return false;
         Serie other = (Serie) obj;
-        if (temporadas == null) {
-            if (other.temporadas != null)
-                return false;
-        } else if (!temporadas.equals(other.temporadas))
-            return false;
-        if (info == null) {
-            if (other.info != null)
-                return false;
-        } else if (!info.equals(other.info))
+        if (idSerie != other.idSerie)
             return false;
         return true;
     }

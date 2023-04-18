@@ -86,11 +86,7 @@ public class Importe {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((fechaVisualizacion == null) ? 0 : fechaVisualizacion.hashCode());
-        result = prime * result + ((nombreSerie == null) ? 0 : nombreSerie.hashCode());
-        result = prime * result + nTemporada;
-        result = prime * result + nCapitulo;
-        result = prime * result + Float.floatToIntBits(cargo);
+        result = prime * result + (int) (idFactura ^ (idFactura >>> 32));
         return result;
     }
 
@@ -103,24 +99,9 @@ public class Importe {
         if (getClass() != obj.getClass())
             return false;
         Importe other = (Importe) obj;
-        if (fechaVisualizacion == null) {
-            if (other.fechaVisualizacion != null)
-                return false;
-        } else if (!fechaVisualizacion.equals(other.fechaVisualizacion))
-            return false;
-        if (nombreSerie == null) {
-            if (other.nombreSerie != null)
-                return false;
-        } else if (!nombreSerie.equals(other.nombreSerie))
-            return false;
-        if (nTemporada != other.nTemporada)
-            return false;
-        if (nCapitulo != other.nCapitulo)
-            return false;
-        if (Float.floatToIntBits(cargo) != Float.floatToIntBits(other.cargo))
+        if (idFactura != other.idFactura)
             return false;
         return true;
-    }
-    
+    }    
     
 }

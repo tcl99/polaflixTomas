@@ -79,9 +79,7 @@ public class Factura {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((fecha == null) ? 0 : fecha.hashCode());
-        result = prime * result + Float.floatToIntBits(importeMensual);
-        result = prime * result + ((importes == null) ? 0 : importes.hashCode());
+        result = prime * result + (int) (idImporte ^ (idImporte >>> 32));
         return result;
     }
 
@@ -94,21 +92,9 @@ public class Factura {
         if (getClass() != obj.getClass())
             return false;
         Factura other = (Factura) obj;
-        if (fecha == null) {
-            if (other.fecha != null)
-                return false;
-        } else if (!fecha.equals(other.fecha))
-            return false;
-        if (Float.floatToIntBits(importeMensual) != Float.floatToIntBits(other.importeMensual))
-            return false;
-        if (importes == null) {
-            if (other.importes != null)
-                return false;
-        } else if (!importes.equals(other.importes))
+        if (idImporte != other.idImporte)
             return false;
         return true;
     }
-
-    
     
 }

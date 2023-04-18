@@ -54,8 +54,7 @@ public class Temporada {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + numero;
-        result = prime * result + ((capitulos == null) ? 0 : capitulos.hashCode());
+        result = prime * result + (int) (idTemporada ^ (idTemporada >>> 32));
         return result;
     }
 
@@ -68,17 +67,8 @@ public class Temporada {
         if (getClass() != obj.getClass())
             return false;
         Temporada other = (Temporada) obj;
-        if (numero != other.numero)
-            return false;
-        if (capitulos == null) {
-            if (other.capitulos != null)
-                return false;
-        } else if (!capitulos.equals(other.capitulos))
+        if (idTemporada != other.idTemporada)
             return false;
         return true;
     }
-
-    
-
-    
 }
