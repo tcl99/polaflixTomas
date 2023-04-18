@@ -11,7 +11,7 @@ Se ha cambiado de un único conjunto de Series en Usuario a tres, he decidido qu
 
 ### Pendiente
 
-- Revisar hashcodes y equals
+- Revisar hashcodes y equals(contemplar solo el id)
 - Fallos graves
 
 ## Actualización JPA
@@ -73,7 +73,7 @@ La característica:
 fetch = FetchType.LAZY
 ```
 
-(__Cambio__) Antes se utilizaba esta característica, pero por problemas y mal uso, se ha decido eliminar. Se ha decidido no poner nada o en casos concretos utilizar:
+(**Cambio**) Antes se utilizaba esta característica, pero por problemas y mal uso, se ha decido eliminar. Se ha decidido no poner nada o en casos concretos utilizar:
 
 ```
 fetch = FetchType.EAGER
@@ -84,6 +84,7 @@ No se han realizado personalizaciones de momento de ningún tipo, a la espera de
 ### Repositories
 
 Se ha decidido crear 3 repositorios:
+
 - Usuario: El que gestionará las transacciones para los usuarios
 - Serie: El que gestionará todo lo relacionado con las series y sus temporadas y capítulos
 - Factura: El que gestionará cada factura con su lista de importes
@@ -97,7 +98,6 @@ Se han añadido los primeros métodos de búsqueda, basados en personalización 
 - Preguntar por lazy y eager (Temporadas)
 - Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
 - Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
-
 
 ### Correciones de la revisión
 

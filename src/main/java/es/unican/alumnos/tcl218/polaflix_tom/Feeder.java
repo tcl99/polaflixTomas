@@ -123,14 +123,13 @@ public class Feeder implements CommandLineRunner {
 		}
  
 
-//		Usuario paco = ur.findByEmail("paco@carSharing.es"); 
-//		
-//		System.out.println("Paco = " + paco.getNombre() + ":" + paco.getEmail());
-//		
-//		Set<Usuario> usuarios = ur.findByFechaAltaAfter(sample);
-//		for(Usuario u : usuarios) {
-//			System.out.println("Usuario " + u.getNombre() + ":" + u.getEmail());
-//		}
-		
+		//Encontrar una serie de un usuario y metersela a otro, comprobar que no la tenga
+
+		List<Serie> series = sr.findAll();
+
+		for (Serie s : series ) {
+			u1.get().agregarSerie(s);
+		}
+		ur.save(u1.get());
 	}
 }
