@@ -2,15 +2,18 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.List;
 
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Facturacion;
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Catalogo;
+
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Factura;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
-import jakarta.persistence.Embedded;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 
 @Entity
 public class Usuario {
@@ -22,17 +25,18 @@ public class Usuario {
     private Boolean plan;
     private String IBAN;
 
-    @Embedded
-    private Catalogo c;
+    @OneToMany(mappedBy = "usuario", orphanRemoval = true)
+    private List<VisualizacionCapitulo> vc;
 
-    @Embedded
-    private Facturacion f;
+    @OneToMany
+    @OrderBy("fecha")
+    private Set<Factura> facturas = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Serie> empezadas = new HashSet<>() ;
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany
     private Set<Serie> pendientes = new HashSet<>();
-    @ManyToMany(fetch = FetchType.EAGER) 
+    @ManyToMany
     private Set<Serie> terminadas = new HashSet<>();
 
 
@@ -47,6 +51,20 @@ public class Usuario {
         IBAN = iBAN;
     }
 
+    //OPERATIONS
+    
+    public void agregarSerie(Serie s) {
+        if(terminadas.contains(s) || empezadas.contains(s)) return;
+        else pendientes.add(s);
+    }
+
+    public void marcarCapituloVisto(Capitulo c) {
+        for (VisualizacionCapitulo vc : this.vc) {
+            if(vc.getCapitulo().equals(c)) {
+                vc.setEstado(true);
+            }
+        }
+    }
     //GETTERS & SETTERS
 
     public String getIdUsuario() {
@@ -81,14 +99,6 @@ public class Usuario {
         IBAN = iBAN;
     }
 
-    public Catalogo getC() {
-        return c;
-    }
-
-    public void setC(Catalogo c) {
-        this.c = c;
-    }
-
     public Set<Serie> getEmpezadas() {
         return empezadas;
     }
@@ -113,41 +123,12 @@ public class Usuario {
         this.terminadas = terminadas;
     }
 
-    public Facturacion getFacturacion() {
-        return f;
+    public Set<Factura> getFacturas() {
+        return facturas;
     }
 
-    public void setFacturacion(Facturacion facturacion) {
-        this.f = facturacion;
-    }
-
-    //OPERATIONS
-
-    /* 
-    
-    De momento estas operaciones no han de estar aquí, pero se comentan para acordarme después de ponerlas en otro sitio 
-
-    public void autenticacion() {
-        //Ir a interfaz para autenticarse
-    }
-
-    public void accederEspacioPersonal() {
-        //ir a interfaz del espacio personal
-    }
-
-    public void verSerie() {
-        //Ir a interfaz de series
-    }
-
-    public void verCargos() {
-        //Ir a interfaz de facturacion
-    }
-
-    */
-    
-    public void agregarSerie(Serie s) {
-        if(terminadas.contains(s) || empezadas.contains(s)) return;
-        else pendientes.add(s);
+    public void setFacturas(Set<Factura> facturas) {
+        this.facturas = facturas;
     }
 
 

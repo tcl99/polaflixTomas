@@ -3,12 +3,16 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 import java.util.Set;
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 
 @Embeddable
 public class InformacionSerie {
     
+    @Enumerated(EnumType.STRING)
+    private CategoriaSerie categoria;
     private String titulo;
-    private String categoria;
     private String genero;
     private String descripcion;
     private Set <String> creadores;
@@ -18,7 +22,7 @@ public class InformacionSerie {
 
     protected InformacionSerie(){}
     
-    public InformacionSerie(String titulo, String categoria, String genero, String descripcion, Set<String> creadores,
+    public InformacionSerie(String titulo,  CategoriaSerie categoria, String genero, String descripcion, Set<String> creadores,
             Set<String> actores) {
         this.titulo = titulo;
         this.categoria = categoria;
@@ -38,11 +42,11 @@ public class InformacionSerie {
         this.titulo = titulo;
     }
 
-    public String getCategoria() {
+    public  CategoriaSerie getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(CategoriaSerie categoria) {
         this.categoria = categoria;
     }
 

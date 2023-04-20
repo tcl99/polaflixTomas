@@ -13,8 +13,9 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Serie {
+
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long idSerie;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -48,13 +49,6 @@ public class Serie {
 
     public void setInfo(InformacionSerie info) {
         this.info = info;
-    }
-
-    //OPERATIONS
-
-
-    public void verCapitulo(Capitulo c) {
-        //Play
     }
 
     //hashCode & equals

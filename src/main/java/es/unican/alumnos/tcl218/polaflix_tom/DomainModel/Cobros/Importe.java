@@ -12,8 +12,8 @@ import jakarta.persistence.Id;
 public class Importe {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    protected long idFactura;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    protected long idImporte;
 
     private Date fechaVisualizacion;
     private String nombreSerie;
@@ -30,13 +30,13 @@ public class Importe {
         this.nTemporada = nTemporada;
         this.nCapitulo = nCapitulo;
         switch(serie.getInfo().getCategoria()) {
-            case "Estandar":
+            case ESTANDAR:
                 this.cargo = 0.50f;
                 break;
-            case "Silver":
+            case SILVER:
                 this.cargo = 0.75f;
                 break;
-            case "Gold":
+            case GOLD:
                 this.cargo = 1.50f;
                 break;
         }
@@ -86,7 +86,7 @@ public class Importe {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idFactura ^ (idFactura >>> 32));
+        result = prime * result + (int) (idImporte ^ (idImporte >>> 32));
         return result;
     }
 
@@ -99,7 +99,7 @@ public class Importe {
         if (getClass() != obj.getClass())
             return false;
         Importe other = (Importe) obj;
-        if (idFactura != other.idFactura)
+        if (idImporte != other.idImporte)
             return false;
         return true;
     }    

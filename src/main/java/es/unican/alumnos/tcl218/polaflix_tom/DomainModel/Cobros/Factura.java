@@ -1,11 +1,10 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,14 +14,14 @@ import jakarta.persistence.OneToMany;
 public class Factura {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    protected long idImporte;
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    protected long idFactura;
 
     private Date fecha;
     private float importeMensual;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Importe> importes;
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Importe> importes;
 
 
     //CONSTRUCTORS
@@ -33,35 +32,11 @@ public class Factura {
         this.fecha = fecha;
     }
 
-    public Factura(Date fecha, Set<Importe> importes) {
+    public Factura(Date fecha, List<Importe> importes) {
         this.fecha = fecha;
         this.importes = importes;
     }
     
-
-    //GETTERS & SETTERS
-
-
-    public float getImporteMensual() {
-        return importeMensual;
-    }
-
-    public Set<Importe> getImportes() {
-        return importes;
-    }
-
-    public void setImportes(Set<Importe> importes) {
-        this.importes = importes;
-    }
-
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
     //OPERATIONS
 
     public void calculaImporteMensual(boolean plan) {
@@ -73,13 +48,40 @@ public class Factura {
         }
     }
 
+    public void agregarImporte (Importe i) {
+        this.importes.add(i);
+    }
+
+    //GETTERS & SETTERS
+
+
+    public float getImporteMensual() {
+        return importeMensual;
+    }
+
+    public List<Importe> getImportes() {
+        return importes;
+    }
+
+    public void setImportes(List<Importe> importes) {
+        this.importes = importes;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
     //hashCode & equals
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (idImporte ^ (idImporte >>> 32));
+        result = prime * result + (int) (idFactura ^ (idFactura >>> 32));
         return result;
     }
 
@@ -92,7 +94,7 @@ public class Factura {
         if (getClass() != obj.getClass())
             return false;
         Factura other = (Factura) obj;
-        if (idImporte != other.idImporte)
+        if (idFactura != other.idFactura)
             return false;
         return true;
     }

@@ -96,19 +96,21 @@ De momento estos tres se consideran los justos y necesarios para sostener la per
 
 Se han añadido los primeros métodos de búsqueda, basados en personalización por nombre, se espera añadir más según vayan surgiendo distintas necesidades
 
-#### Dudas a preguntar
-
-- Preguntar por lazy y eager
-- Utilizar SIEMPRE List o Set para declarar las propiedades, ahorra problemas, ya se podrán instanciar después como sus clases herederas
-- Consultar duda sobre Entity->Embeddable->Entity y tabla Usuario_f
 
 ### Correciones de la revisión
 
 - Eliminada la característica de FetchType.LAZY de todo el código (Al probar el feeder daba problemas)
 - Se ha cambiado las relaciones de las series en Usuario y Catalogo (~~@OneToMany~~ --> @ManyToMany), ya que las series pueden estar agregadas por más de un usuario a la vez
+- Eliminadas Catalogo y Facturacion, no se ha visto su utilidad practica. Ahora Usuario tiene un List<Factura>
 
-### Pendiente
+### Otros cambios relevantes
 
-- Revisar tema de embeddables (Catalogo y Facturacion)
+- Ahora VisualizacionCapitulo es un Entity que sirve para que cada Usuario pueda marcar un Capitulo visto o no de forma única. 
+- Añadido CategoriaSerie como una enumeración para mejor compresión
+
+# DUDA CON EL TEMA DE VISUALIZACIONCAPITULO
+
+- TABLA SOLO PARA ESO
+- O GUARDAR CAPITULOS VISTOS
 
 ## Servicio: REST

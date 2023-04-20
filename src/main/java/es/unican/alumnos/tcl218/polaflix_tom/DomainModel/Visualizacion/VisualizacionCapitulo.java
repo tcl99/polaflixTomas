@@ -1,13 +1,28 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import jakarta.persistence.Embeddable;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario.Usuario;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
-@Embeddable
+@Entity
 public class VisualizacionCapitulo {
-    
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @ManyToOne
+    private Capitulo capitulo;
+
     private int tiempoVisionado;
     private int duracion;
-    private String estado;
+    private Boolean estado;
 
     //CONSTRUCTORS
 
@@ -18,45 +33,55 @@ public class VisualizacionCapitulo {
         this.duracion = duracion;
     }
 
-    //GETTERS & SETTERS
-
-    public int getTiempoVisionado() {
-        return tiempoVisionado;
-    }
-
-
-
-    public void setTiempoVisionado(int tiempoVisionado) {
-        this.tiempoVisionado = tiempoVisionado;
-    }
-
-
-
-    public int getDuracion() {
-        return duracion;
-    }
-
-
-
-    public void setDuracion(int duracion) {
-        this.duracion = duracion;
-    }
-
-
-    public String getEstado() {
-        if(tiempoVisionado == 0) estado = "Pendiente";
-        else if(tiempoVisionado > duracion*0.95) estado = "Visto";
-        else estado = "En curso";
-
-        return estado;
-    }
-
-
     //OPERATIONS
 
     public int tiempoRestante() {
         return duracion - tiempoVisionado;
     }
+
+
+    //GETTERS & SETTERS
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Capitulo getCapitulo() {
+        return capitulo;
+    }
+
+    public void setCapitulo(Capitulo capitulo) {
+        this.capitulo = capitulo;
+    }
+
+    public int getTiempoVisionado() {
+        return tiempoVisionado;
+    }
+
+    public void setTiempoVisionado(int tiempoVisionado) {
+        this.tiempoVisionado = tiempoVisionado;
+    }
+
+    public int getDuracion() {
+        return duracion;
+    }
+
+    public void setDuracion(int duracion) {
+        this.duracion = duracion;
+    }
+
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
 
     //hashCode & equals
 

@@ -12,8 +12,9 @@ import jakarta.persistence.OneToMany;
 
 @Entity
 public class Temporada {
+    
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long idTemporada;
 
     private int numero;

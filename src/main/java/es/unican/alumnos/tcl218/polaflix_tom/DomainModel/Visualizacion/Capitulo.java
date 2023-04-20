@@ -1,8 +1,5 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
-import java.util.Date;
-
-import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,30 +9,26 @@ import jakarta.persistence.Id;
 public class Capitulo {
     
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long idCapitulo;
 
     private int numero;
     private String titulo;
     private String descripcion;
     private String enlace;
-    private Date fechaVisualizacion;
 
-    @Embedded
-    private VisualizacionCapitulo vc;
 
     //CONSTRUCTORS
 
     protected Capitulo(){}
 
-    public Capitulo(int numero, String titulo, String descripcion, String enlace, Date fechaVisualizacion, VisualizacionCapitulo vc) {
+    public Capitulo(int numero, String titulo, String descripcion, String enlace) {
         this.numero = numero;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.enlace = enlace;
-        this.fechaVisualizacion = fechaVisualizacion;
-        this.vc = vc;
     }
+
 
     //GETTERS & SETTERS
 
@@ -64,18 +57,7 @@ public class Capitulo {
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
-    public Date getFechaVisualizacion() {
-        return fechaVisualizacion;
-    }
-    public void setFechaVisualizacion(Date fechaVisualizacion) {
-        this.fechaVisualizacion = fechaVisualizacion;
-    }
-    public VisualizacionCapitulo getVc() {
-        return vc;
-    }
-    public void setVc(VisualizacionCapitulo vc) {
-        this.vc = vc;
-    }
+
 
     //hashCode & equals
 
