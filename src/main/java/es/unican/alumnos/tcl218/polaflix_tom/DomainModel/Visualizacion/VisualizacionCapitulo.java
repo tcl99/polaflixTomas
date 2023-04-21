@@ -20,9 +20,9 @@ public class VisualizacionCapitulo {
     @ManyToOne
     private Capitulo capitulo;
 
+    private Boolean estado;
     private int tiempoVisionado;
     private int duracion;
-    private Boolean estado;
 
     //CONSTRUCTORS
 
