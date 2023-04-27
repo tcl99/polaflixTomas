@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class VisualizacionCapitulo {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
 
     @ManyToOne
@@ -20,7 +20,6 @@ public class VisualizacionCapitulo {
     @ManyToOne
     private Capitulo capitulo;
 
-    private Boolean estado;
     private int tiempoVisionado;
     private int duracion;
 
@@ -32,6 +31,15 @@ public class VisualizacionCapitulo {
         this.tiempoVisionado = tiempoVisionado;
         this.duracion = duracion;
     }
+
+    
+    public VisualizacionCapitulo(Usuario usuario, Capitulo capitulo) {
+        this.usuario = usuario;
+        this.capitulo = capitulo;
+        this.tiempoVisionado = 0;
+        this.duracion = 0;
+    }
+
 
     //OPERATIONS
 
@@ -74,14 +82,6 @@ public class VisualizacionCapitulo {
         this.duracion = duracion;
     }
 
-    public Boolean getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Boolean estado) {
-        this.estado = estado;
-    }
-
 
     //hashCode & equals
 
@@ -89,9 +89,9 @@ public class VisualizacionCapitulo {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + tiempoVisionado;
-        result = prime * result + duracion;
-        result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
+        result = prime * result + ((capitulo == null) ? 0 : capitulo.hashCode());
         return result;
     }
 
@@ -104,14 +104,20 @@ public class VisualizacionCapitulo {
         if (getClass() != obj.getClass())
             return false;
         VisualizacionCapitulo other = (VisualizacionCapitulo) obj;
-        if (tiempoVisionado != other.tiempoVisionado)
-            return false;
-        if (duracion != other.duracion)
-            return false;
-        if (estado == null) {
-            if (other.estado != null)
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!estado.equals(other.estado))
+        } else if (!id.equals(other.id))
+            return false;
+        if (usuario == null) {
+            if (other.usuario != null)
+                return false;
+        } else if (!usuario.equals(other.usuario))
+            return false;
+        if (capitulo == null) {
+            if (other.capitulo != null)
+                return false;
+        } else if (!capitulo.equals(other.capitulo))
             return false;
         return true;
     }

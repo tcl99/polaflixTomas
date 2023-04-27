@@ -1,14 +1,18 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
+
 import java.util.List;
 
-
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Factura;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Importe;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
@@ -25,12 +29,12 @@ public class Usuario {
     private Boolean plan;
     private String IBAN;
 
-    @OneToMany(mappedBy = "usuario", orphanRemoval = true)
-    private List<VisualizacionCapitulo> vc;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<VisualizacionCapitulo> vc = new ArrayList<>();
 
     @OneToMany
     @OrderBy("fecha")
-    private Set<Factura> facturas = new HashSet<>();
+    private List<Factura> facturas = new ArrayList<>();
 
     @ManyToMany
     private Set<Serie> empezadas = new HashSet<>() ;
@@ -58,13 +62,14 @@ public class Usuario {
         else pendientes.add(s);
     }
 
-    public void marcarCapituloVisto(Capitulo c) {
-        for (VisualizacionCapitulo vc : this.vc) {
-            if(vc.getCapitulo().equals(c)) {
-                vc.setEstado(true);
-            }
-        }
+    public void marcarCapituloVisto(Serie s, int nTemporada, Capitulo c) {
+        VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
+        this.vc.add(visualizacionCapitulo);
+        
+        //Se añade el importe al último mes
+        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), s, nTemporada, c.getNumero()));
     }
+
     //GETTERS & SETTERS
 
     public String getIdUsuario() {
@@ -123,11 +128,11 @@ public class Usuario {
         this.terminadas = terminadas;
     }
 
-    public Set<Factura> getFacturas() {
+    public List<Factura> getFacturas() {
         return facturas;
     }
 
-    public void setFacturas(Set<Factura> facturas) {
+    public void setFacturas(List<Factura> facturas) {
         this.facturas = facturas;
     }
 

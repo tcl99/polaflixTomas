@@ -1,9 +1,7 @@
 package es.unican.alumnos.tcl218.polaflix_tom;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.	util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -44,31 +42,31 @@ public class Feeder implements CommandLineRunner {
 		feedUsuario();
 		
 		test();
+
+		Optional <Usuario> u = ur.findById("socio");
+		Optional <Serie> serie = sr.findById(1l);
+
+		u.get().marcarCapituloVisto(serie.get(), 0, serie.get().getTemporadas().get(1).getCapitulos().get(0));
+
+		ur.save(u.get());
 		
 		System.out.println("Application feeded");
 	}
 
 	private void feedFactura() {
-		Factura f1 = new Factura(new Date(0));
-		Factura f2 = new Factura(new Date(0));
+		Factura f1 = new Factura(LocalDate.now());
+		Factura f2 = new Factura(LocalDate.now());
 		List<Importe> importes = new ArrayList<Importe>();
 		List<Importe> importes2 = new ArrayList<Importe>();
 
 		Importe i1,i2,i3;
 
-		List<Serie> s = sr.findByInfoTituloOrderByInfoTitulo("The Office");
-		Serie serie = s.get(0);
+		Serie serie = sr.findByInfoTitulo("The Office");
 
-		SimpleDateFormat dateParser = new SimpleDateFormat("dd-MM-yyyy");
-		Date sample = null;
-		try {
-			sample = dateParser.parse("01-01-1923");
-		} catch (ParseException e) {
-			System.out.println("Crujo parseando fecha");
-			e.printStackTrace();
-		}
+		LocalDate sample = LocalDate.of(1789, 7, 14);
 
-		i1 = new Importe(new Date(System.currentTimeMillis()),serie, serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
+
+		i1 = new Importe(LocalDate.now(),serie, serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
 		i2 = new Importe(sample,serie, serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
 		i3 = new Importe(sample,serie, serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
 
@@ -120,8 +118,8 @@ public class Feeder implements CommandLineRunner {
 		Optional<Factura> formula2 = fr.findById(2l);
 		List<Factura> facturas = fr.findAll();
 
-		Set<Factura> set1 = new HashSet<>();
-		Set<Factura> set2 = new HashSet<>();
+		List<Factura> l1 = new ArrayList<>();
+		List<Factura> l2 = new ArrayList<>();
  
 		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
 		else System.out.println("No hay tal");
@@ -129,10 +127,10 @@ public class Feeder implements CommandLineRunner {
 		else System.out.println("No hay tal");
 		 
 
-		set1.add(formula1.get());
-		set2.add(formula2.get());
-		u1.get().setFacturas(set1);
-		u2.get().setFacturas(set2);
+		l1.add(formula1.get());
+		l2.add(formula2.get());
+		u1.get().setFacturas(l1);
+		u2.get().setFacturas(l2);
 
 		for (Factura f : facturas) {
 			System.out.println(f.getImporteMensual() + " " + f.getFecha());
@@ -140,16 +138,19 @@ public class Feeder implements CommandLineRunner {
 				System.out.println("\t "+i.getCargo()+i.getNombreSerie());
 			}
 		}
- 
-
 		//Encontrar una serie de un usuario y metersela a otro, comprobar que no la tenga
 
 		List<Serie> series = sr.findAll();
 
+		Usuario usuario1 = u1.get();
+		Usuario usuario2 = u2.get();
+
 		for (Serie s : series ) {
-			u1.get().agregarSerie(s);
-			u2.get().agregarSerie(s);
+			usuario1.agregarSerie(s);
+			usuario2.agregarSerie(s);
+			
 		}
+
 		ur.save(u1.get());
 		ur.save(u2.get());
 	}
