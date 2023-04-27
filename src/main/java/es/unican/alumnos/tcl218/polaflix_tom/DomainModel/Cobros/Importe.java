@@ -1,6 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import jakarta.persistence.Entity;
@@ -15,7 +15,7 @@ public class Importe {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long idImporte;
 
-    private Date fechaVisualizacion;
+    private LocalDate fechaVisualizacion;
     private String nombreSerie;
     private int nTemporada;
     private int nCapitulo;
@@ -24,7 +24,7 @@ public class Importe {
     //CONSTRUCTOR
     protected Importe() {}
     
-    public Importe(Date fechaVisualizacion, Serie serie, int nTemporada, int nCapitulo) {
+    public Importe(LocalDate fechaVisualizacion, Serie serie, int nTemporada, int nCapitulo) {
         this.fechaVisualizacion = fechaVisualizacion;
         this.nombreSerie = serie.getInfo().getTitulo();
         this.nTemporada = nTemporada;
@@ -44,11 +44,11 @@ public class Importe {
 
     //GETTERS & SETTERS
 
-    public Date getFechaVisualizacion() {
+    public LocalDate getFechaVisualizacion() {
         return fechaVisualizacion;
     }
 
-    public void setFechaVisualizacion(Date fechaVisualizacion) {
+    public void setFechaVisualizacion(LocalDate fechaVisualizacion) {
         this.fechaVisualizacion = fechaVisualizacion;
     }
 
