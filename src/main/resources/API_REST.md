@@ -14,45 +14,44 @@ Parámetros: No hay
 Respuestas:
 
 - 200 Ok
-- 400 Bad Request
 <hr>
 
 Modelo de Respuesta:
 
 ```json
 {
-    "empezadas":[
-        {
-            "id": 1,
-            "titulo": "The Office",
-            "categoria": GOLD,
-            "genero": "comedia",
-            "descripcion": "Serie de comedia sobre el día a día en la oficina",
-            "creadores": ["Ricky Gervais", "Stephen Merchant"],
-            "actores":["Jenna Fischer", "Steve Carrell", "John Krasinski"]
-        }
-    ],
-    "terminadas": [
-        {
-            "id": 2,
-            "titulo": "Sons of Anarchy",
-            "categoria": GOLD,
-            "genero": "drama",
-            "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
-            "creadores": ["Kurt Sutter"],
-            "actores":["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
-        },
-        {
-            "id": 3,
-            "titulo": "Breaking Bad",
-            "categoria": GOLD,
-            "genero": "drama",
-            "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
-            "creadores": ["Vince Gilligan"],
-            "actores":["Bryan Cranston", "Aaron Paul"]
-        }
-    ],
-    "pendientes": []
+  "empezadas": [
+    {
+      "id": 1,
+      "titulo": "The Office",
+      "categoria": 2,
+      "genero": "comedia",
+      "descripcion": "Serie de comedia sobre el día a día en la oficina",
+      "creadores": ["Ricky Gervais", "Stephen Merchant"],
+      "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
+    }
+  ],
+  "terminadas": [
+    {
+      "id": 2,
+      "titulo": "Sons of Anarchy",
+      "categoria": 2,
+      "genero": "drama",
+      "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
+      "creadores": ["Kurt Sutter"],
+      "actores": ["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
+    },
+    {
+      "id": 3,
+      "titulo": "Breaking Bad",
+      "categoria": 2,
+      "genero": "drama",
+      "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
+      "creadores": ["Vince Gilligan"],
+      "actores": ["Bryan Cranston", "Aaron Paul"]
+    }
+  ],
+  "pendientes": []
 }
 ```
 
@@ -71,41 +70,40 @@ Parámetros: No hay
 Respuestas:
 
 - 200 Ok
-- 400 Bad Request
 <hr>
 
 Modelo de Respuesta:
 
 ```json
-    [
-        {
-            "id": 1,
-            "titulo": "The Office",
-            "categoria": GOLD,
-            "genero": "comedia",
-            "descripcion": "Serie de comedia sobre el día a día en la oficina",
-            "creadores": ["Ricky Gervais", "Stephen Merchant"],
-            "actores":["Jenna Fischer", "Steve Carrell", "John Krasinski"]
-        },
-        {
-            "id": 2,
-            "titulo": "Sons of Anarchy",
-            "categoria": GOLD,
-            "genero": "drama",
-            "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
-            "creadores": ["Kurt Sutter"],
-            "actores":["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
-        },
-        {
-            "id": 3,
-            "titulo": "Breaking Bad",
-            "categoria": GOLD,
-            "genero": "drama",
-            "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
-            "creadores": ["Vince Gilligan"],
-            "actores":["Bryan Cranston", "Aaron Paul"]
-        }
-    ]
+[
+  {
+    "id": 1,
+    "titulo": "The Office",
+    "categoria": 2,
+    "genero": "comedia",
+    "descripcion": "Serie de comedia sobre el día a día en la oficina",
+    "creadores": ["Ricky Gervais", "Stephen Merchant"],
+    "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
+  },
+  {
+    "id": 2,
+    "titulo": "Sons of Anarchy",
+    "categoria": 2,
+    "genero": "drama",
+    "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
+    "creadores": ["Kurt Sutter"],
+    "actores": ["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
+  },
+  {
+    "id": 3,
+    "titulo": "Breaking Bad",
+    "categoria": 2,
+    "genero": "drama",
+    "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
+    "creadores": ["Vince Gilligan"],
+    "actores": ["Bryan Cranston", "Aaron Paul"]
+  }
+]
 ```
 
 ## Recurso: /catalogo/{titulo}
@@ -136,7 +134,7 @@ Modelo de Respuesta:
    {
         "id": 1,
         "titulo": "The Office",
-        "categoria": GOLD,
+        "categoria": 2,
         "genero": "comedia",
         "descripcion": "Serie de comedia sobre el día a día en la oficina",
         "creadores": ["Ricky Gervais", "Stephen Merchant"],
@@ -172,6 +170,51 @@ Modelo de Respuesta:
 
 ```
 
+## Recurso: /catalogo/{inicial}
+
+Verbos Aceptados: GET
+
+- GET /series/{inicial} - Devuelve las series que comienzan por la inicial
+
+Parámetros:
+
+- inicial: Primera letra del título de la serie
+
+<hr>
+
+Respuestas:
+
+- 200 Ok
+- 400 Bad Request
+- 404 Not Found
+
+<hr>
+
+Modelo de Respuesta:
+
+```json
+[
+  {
+    "id": 1,
+    "titulo": "The Office",
+    "categoria": 2,
+    "genero": "comedia",
+    "descripcion": "Serie de comedia sobre el día a día en la oficina",
+    "creadores": ["Ricky Gervais", "Stephen Merchant"],
+    "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
+  },
+  {
+    "id": 12,
+    "titulo": "The Good Doctor",
+    "categoria": 1,
+    "genero": "drama",
+    "descripcion": "Serie sobre la vida de un médico genio con autismo",
+    "creadores": ["David Shore"],
+    "actores": ["Freddie Highmore"]
+  }
+]
+```
+
 ## Recurso: /catalogo/{id}
 
 Verbos Aceptados: PUT, GET
@@ -200,7 +243,7 @@ Modelo de Respuesta:
     {
         "id": 1,
         "titulo": "The Office",
-        "categoria": GOLD,
+        "categoria": 2,
         "genero": "comedia",
         "descripcion": "Serie de comedia sobre el día a día en la oficina",
         "creadores": ["Ricky Gervais", "Stephen Merchant"],
@@ -251,6 +294,7 @@ Respuestas:
 
 - 200 Ok
 - 400 Bad Request
+- 404 Not Found
 <hr>
 
 Modelo de Respuesta:
