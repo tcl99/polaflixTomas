@@ -1,6 +1,6 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
-import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -17,7 +17,7 @@ public class Factura {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     protected long idFactura;
 
-    private LocalDate fecha;
+    private YearMonth fecha;
     private float importeMensual;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -28,11 +28,11 @@ public class Factura {
     
     protected Factura() {}
     
-    public Factura(LocalDate fecha) {
+    public Factura(YearMonth fecha) {
         this.fecha = fecha;
     }
 
-    public Factura(LocalDate fecha, List<Importe> importes) {
+    public Factura(YearMonth fecha, List<Importe> importes) {
         this.fecha = fecha;
         this.importes = importes;
     }
@@ -67,11 +67,11 @@ public class Factura {
         this.importes = importes;
     }
 
-    public LocalDate getFecha() {
+    public YearMonth getFecha() {
         return fecha;
     }
 
-    public void setFecha(LocalDate fecha) {
+    public void setFecha(YearMonth fecha) {
         this.fecha = fecha;
     }
 

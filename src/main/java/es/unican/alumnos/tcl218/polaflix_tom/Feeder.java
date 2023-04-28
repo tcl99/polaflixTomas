@@ -1,6 +1,7 @@
 package es.unican.alumnos.tcl218.polaflix_tom;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -54,8 +55,8 @@ public class Feeder implements CommandLineRunner {
 	}
 
 	private void feedFactura() {
-		Factura f1 = new Factura(LocalDate.now());
-		Factura f2 = new Factura(LocalDate.now());
+		Factura f1 = new Factura(YearMonth.now());
+		Factura f2 = new Factura(YearMonth.of(2023, 3));
 		List<Importe> importes = new ArrayList<Importe>();
 		List<Importe> importes2 = new ArrayList<Importe>();
 
