@@ -55,7 +55,7 @@ Modelo de Respuesta:
 }
 ```
 
-## Recurso: /catalogo
+## Recurso: /series
 
 Verbos Aceptados: GET
 
@@ -106,7 +106,7 @@ Modelo de Respuesta:
 ]
 ```
 
-## Recurso: /catalogo/{titulo}
+## Recurso: /series/{titulo}
 
 Verbos Aceptados: GET
 
@@ -170,7 +170,7 @@ Modelo de Respuesta:
 
 ```
 
-## Recurso: /catalogo/{inicial}
+## Recurso: /series/{inicial}
 
 Verbos Aceptados: GET
 
@@ -215,7 +215,7 @@ Modelo de Respuesta:
 ]
 ```
 
-## Recurso: /catalogo/{id}
+## Recurso: /series/{id}
 
 Verbos Aceptados: PUT, GET
 
