@@ -2,7 +2,7 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 
 import java.time.LocalDate;
 
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.CategoriaSerie;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -24,12 +24,12 @@ public class Importe {
     //CONSTRUCTOR
     protected Importe() {}
     
-    public Importe(LocalDate fechaVisualizacion, Serie serie, int nTemporada, int nCapitulo) {
+    public Importe(LocalDate fechaVisualizacion, String titulo, CategoriaSerie cs, int nTemporada, int nCapitulo) {
         this.fechaVisualizacion = fechaVisualizacion;
-        this.nombreSerie = serie.getInfo().getTitulo();
+        this.nombreSerie = titulo;
         this.nTemporada = nTemporada;
         this.nCapitulo = nCapitulo;
-        switch(serie.getInfo().getCategoria()) {
+        switch(cs) {
             case ESTANDAR:
                 this.cargo = 0.50f;
                 break;

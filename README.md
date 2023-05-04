@@ -110,3 +110,7 @@ Se han añadido los primeros métodos de búsqueda, basados en personalización 
 ## Servicio: REST
 
 ### Modelo API REST
+
+### ACTUALIZACIONES IMPORTANTES
+
+- Se ha eliminado el repositorio de Facturas, no se considera necesario pues las facturas se cargan con el usuario

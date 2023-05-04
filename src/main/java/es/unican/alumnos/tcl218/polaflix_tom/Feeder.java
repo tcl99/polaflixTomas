@@ -21,7 +21,6 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Categoria
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Temporada;
-import es.unican.alumnos.tcl218.polaflix_tom.repositories.FacturaRepository;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.SerieRepository;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
 
@@ -29,8 +28,6 @@ import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
 @Transactional
 public class Feeder implements CommandLineRunner {
 
-    @Autowired
-	protected FacturaRepository fr;
 	@Autowired
 	protected SerieRepository sr;
 	@Autowired
@@ -39,49 +36,20 @@ public class Feeder implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		feedSerie();
-		feedFactura();
 		feedUsuario();
 		
 		test();
 
 		Optional <Usuario> u = ur.findById("socio");
-		Optional <Serie> serie = sr.findById(1l);
+		Optional <Serie> s = sr.findById(1l);
 
-		u.get().marcarCapituloVisto(serie.get(), 0, serie.get().getTemporadas().get(1).getCapitulos().get(0));
+		Serie serie = s.get();
+
+		u.get().marcarCapituloVisto(serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), 0, serie.getTemporadas().get(1).getCapitulos().get(0));
 
 		ur.save(u.get());
 		
 		System.out.println("Application feeded");
-	}
-
-	private void feedFactura() {
-		Factura f1 = new Factura(YearMonth.now());
-		Factura f2 = new Factura(YearMonth.of(2023, 3));
-		List<Importe> importes = new ArrayList<Importe>();
-		List<Importe> importes2 = new ArrayList<Importe>();
-
-		Importe i1,i2,i3;
-
-		Serie serie = sr.findByInfoTitulo("The Office");
-
-		LocalDate sample = LocalDate.of(1789, 7, 14);
-
-
-		i1 = new Importe(LocalDate.now(),serie, serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
-		i2 = new Importe(sample,serie, serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
-		i3 = new Importe(sample,serie, serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
-
-		importes.add(i1);
-		importes.add(i2);
-		importes2.add(i3);
-		f1.setImportes(importes);
-		f1.calculaImporteMensual(false);
-		f2.setImportes(importes2);
-		f2.calculaImporteMensual(true);
-		
-		fr.save(f1);
-		fr.save(f2);
-		
 	}
 	
 	private void feedSerie() {
@@ -104,8 +72,43 @@ public class Feeder implements CommandLineRunner {
 
 	private void feedUsuario() {
 
+		Factura f1 = new Factura(YearMonth.now());
+		Factura f2 = new Factura(YearMonth.of(2023, 3));
+		List<Importe> importes = new ArrayList<Importe>();
+		List<Importe> importes2 = new ArrayList<Importe>();
+
+		Importe i1,i2,i3;
+
+		Serie serie = sr.findByInfoTitulo("The Office");
+
+		LocalDate sample = LocalDate.of(1789, 7, 14);
+
+
+		i1 = new Importe(LocalDate.now(),serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
+		i2 = new Importe(sample,serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
+		i3 = new Importe(sample,serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
+
+		importes.add(i1);
+		importes.add(i2);
+		importes2.add(i3);
+
+		f1.setImportes(importes);
+		f1.calculaImporteMensual(false);
+		f2.setImportes(importes2);
+		f2.calculaImporteMensual(true);
+
+		List <Factura> lf1 = new ArrayList<>();
+		List <Factura> lf2 = new ArrayList<>();
+
+		lf1.add(f1);
+		lf2.add(f2);
+
         Usuario u1 = new Usuario("socio", "kk", false, null);
 		Usuario u2 = new Usuario("JIMBO", "pringao", true, null);
+
+		u1.setFacturas(lf1);
+		u2.setFacturas(lf2);
+
         ur.save(u1);
 		ur.save(u2);
 	}
@@ -115,30 +118,12 @@ public class Feeder implements CommandLineRunner {
 		 
 		Optional<Usuario> u1 = ur.findById("socio");
 		Optional<Usuario> u2 = ur.findById("JIMBO");
-		Optional<Factura> formula1 = fr.findById(1l);
-		Optional<Factura> formula2 = fr.findById(2l);
-		List<Factura> facturas = fr.findAll();
-
-		List<Factura> l1 = new ArrayList<>();
-		List<Factura> l2 = new ArrayList<>();
  
 		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
 		else System.out.println("No hay tal");
 		if(u2.isPresent()) System.out.println("Usuario: "+u2.get().getIdUsuario());
 		else System.out.println("No hay tal");
 		 
-
-		l1.add(formula1.get());
-		l2.add(formula2.get());
-		u1.get().setFacturas(l1);
-		u2.get().setFacturas(l2);
-
-		for (Factura f : facturas) {
-			System.out.println(f.getImporteMensual() + " " + f.getFecha());
-			for (Importe i : f.getImportes()) {
-				System.out.println("\t "+i.getCargo()+i.getNombreSerie());
-			}
-		}
 		//Encontrar una serie de un usuario y metersela a otro, comprobar que no la tenga
 
 		List<Serie> series = sr.findAll();

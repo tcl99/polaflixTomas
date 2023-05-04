@@ -1,15 +1,16 @@
 package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Set;
-
 import java.util.List;
+import java.util.Set;
 
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Factura;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Importe;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.CategoriaSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import jakarta.persistence.CascadeType;
@@ -29,10 +30,20 @@ public class Usuario {
     private Boolean plan;
     private String IBAN;
 
+    /*
+     * 
+     * OneToMany: LAZY
+     * ManyToOne: EAGER
+     * ManyToMany: LAZY
+     * OneToOne: EAGER
+     * 
+     * Se ha decidido dejarlo por defecto todo, por lo tanto son eager
+     */
+
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<VisualizacionCapitulo> vc = new ArrayList<>();
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
     @OrderBy("fecha")
     private List<Factura> facturas = new ArrayList<>();
 
@@ -58,16 +69,21 @@ public class Usuario {
     //OPERATIONS
     
     public void agregarSerie(Serie s) {
-        if(terminadas.contains(s) || empezadas.contains(s)) return;
+        if(terminadas.contains(s) || empezadas.contains(s) || s == null) return;
         else pendientes.add(s);
     }
 
-    public void marcarCapituloVisto(Serie s, int nTemporada, Capitulo c) {
+    public void marcarCapituloVisto(String titulo, CategoriaSerie cs, int nTemporada, Capitulo c) {
         VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
         this.vc.add(visualizacionCapitulo);
-        
         //Se añade el importe al último mes
-        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), s, nTemporada, c.getNumero()));
+        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), titulo, cs, nTemporada, c.getNumero()));
+    }
+    public Factura getFacturaByFecha(YearMonth fecha) {
+        for (Factura f : facturas) {
+            if(f.getFecha().equals(fecha)) return f;
+        }
+        return null;
     }
 
     //GETTERS & SETTERS
