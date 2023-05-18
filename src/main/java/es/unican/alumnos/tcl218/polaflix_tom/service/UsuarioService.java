@@ -23,7 +23,7 @@ public class UsuarioService {
     @Autowired
     protected UsuarioRepository ur;
 
-    public List<Set<InformacionSerie>> getSeriesUsuario (String nombreUsuario) {
+    public List<Set<Serie>> getSeriesUsuario (String nombreUsuario) {
         /** 
          * Se devuelve en una lista, los tres sets de las series del usuario 
          * Se devuelve solo la información porque se ha decidido cargar una serie solo
@@ -38,11 +38,11 @@ public class UsuarioService {
         }
         Usuario u = isUser.get();
 
-        List< Set<InformacionSerie> > listaSeriesUsuario = new ArrayList<>();
+        List< Set<Serie> > listaSeriesUsuario = new ArrayList<>();
 
-        listaSeriesUsuario.add(u.getEmpezadas().stream().map(Serie::getInfo).collect(Collectors.toSet()));
-        listaSeriesUsuario.add(u.getPendientes().stream().map(Serie::getInfo).collect(Collectors.toSet()));
-        listaSeriesUsuario.add(u.getTerminadas().stream().map(Serie::getInfo).collect(Collectors.toSet()));
+        listaSeriesUsuario.add(u.getEmpezadas().stream().collect(Collectors.toSet()));
+        listaSeriesUsuario.add(u.getPendientes().stream().collect(Collectors.toSet()));
+        listaSeriesUsuario.add(u.getTerminadas().stream().collect(Collectors.toSet()));
         
         return listaSeriesUsuario;
     }

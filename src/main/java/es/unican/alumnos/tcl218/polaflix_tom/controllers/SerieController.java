@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.service.SerieService;
 
@@ -37,7 +36,7 @@ public class SerieController {
         }
         // Si no, se comprueba si se ha recibido un caracter
         else if (titulo.length() == 1) {
-            List<InformacionSerie> s = ss.getAllSeriesByInicial(titulo);
+            List<Serie> s = ss.getAllSeriesByInicial(titulo);
             if (s != null) {
                 return ResponseEntity.ok(s);
             }

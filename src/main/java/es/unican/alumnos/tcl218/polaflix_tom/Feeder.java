@@ -41,9 +41,6 @@ public class Feeder implements CommandLineRunner {
 		test();
 
 		Optional<Usuario> u = ur.findById("socio");
-		Optional<Serie> s = sr.findById(1l);
-
-		Serie serie = s.get();
 
 		ur.save(u.get());
 
@@ -57,16 +54,25 @@ public class Feeder implements CommandLineRunner {
 		actores.add("Jenna Fischer");
 		actores.add("Steve Carrell");
 		actores.add("John Krasinski");
-		ArrayList<Temporada> t = new ArrayList<>();
+		ArrayList<Temporada> t1 = new ArrayList<>();
+		ArrayList<Temporada> t2 = new ArrayList<>();
+
 		for (int i = 1; i <= 9; i++) {
 			ArrayList<Capitulo> c = new ArrayList<>();
 			c.add(new Capitulo(22, "Casino Night", "zzz", null));
-			t.add(new Temporada(i, c));
+			t1.add(new Temporada(i, c));
 		}
-		Serie a = new Serie(t, new InformacionSerie("The Office", CategoriaSerie.GOLD, "Comedia",
+		for (int i = 1; i <= 9; i++) {
+			ArrayList<Capitulo> c = new ArrayList<>();
+			c.add(new Capitulo(22, "Tren", "zzz", null));
+			t2.add(new Temporada(i, c));
+		}
+		Serie a = new Serie(t1, new InformacionSerie("The Office", CategoriaSerie.GOLD, "Comedia",
 				"Serie de comedia sobre el día a día en la oficina", null, actores));
-
+		Serie b = new Serie(t2, new InformacionSerie("Tomas el tren", CategoriaSerie.ESTANDAR, "Comedia",
+				"Serie sobre trenes", null, actores));
 		sr.save(a);
+		sr.save(b);
 	}
 
 	private void feedUsuario() {

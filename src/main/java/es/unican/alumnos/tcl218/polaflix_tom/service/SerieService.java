@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.SerieRepository;
 
@@ -15,11 +14,11 @@ public class SerieService {
     @Autowired
     protected SerieRepository sr;
 
-    public List<InformacionSerie> getAllSeries() {
+    public List<Serie> getAllSeries() {
         return sr.findAllSeries();
     }
 
-    public List<InformacionSerie> getAllSeriesByInicial (String inicial) {
+    public List<Serie> getAllSeriesByInicial (String inicial) {
         char c = inicial.charAt(0);
 
         if(Character.isAlphabetic(c)) {
