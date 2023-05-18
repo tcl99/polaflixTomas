@@ -71,14 +71,14 @@ public class UsuarioService {
         u.agregarSerie(s);
     }
 
-    public void marcarCapituloVisto (Capitulo c, String nombreUsuario) {
+    public void marcarCapituloVisto (InformacionSerie s, int nTemporada, Capitulo c, String nombreUsuario) {
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
         if(!isUser.isPresent()) {
             return;
         }
         Usuario u = isUser.get();
 
-        //u.marcarCapituloVisto(null, 0, c);
+        u.marcarCapituloVisto(s, nTemporada, c);
     }
 }
  

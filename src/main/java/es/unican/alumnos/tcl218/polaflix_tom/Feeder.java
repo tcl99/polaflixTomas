@@ -37,36 +37,35 @@ public class Feeder implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		feedSerie();
 		feedUsuario();
-		
+
 		test();
 
-		Optional <Usuario> u = ur.findById("socio");
-		Optional <Serie> s = sr.findById(1l);
+		Optional<Usuario> u = ur.findById("socio");
+		Optional<Serie> s = sr.findById(1l);
 
 		Serie serie = s.get();
 
-		u.get().marcarCapituloVisto(serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), 0, serie.getTemporadas().get(1).getCapitulos().get(0));
-
 		ur.save(u.get());
-		
+
 		System.out.println("Application feeded");
 	}
-	
+
 	private void feedSerie() {
-		//SERIE A MANO
+		// SERIE A MANO
 
 		Set<String> actores = new HashSet<>();
 		actores.add("Jenna Fischer");
 		actores.add("Steve Carrell");
 		actores.add("John Krasinski");
 		ArrayList<Temporada> t = new ArrayList<>();
-		for(int i = 1; i<=9; i++) {
+		for (int i = 1; i <= 9; i++) {
 			ArrayList<Capitulo> c = new ArrayList<>();
 			c.add(new Capitulo(22, "Casino Night", "zzz", null));
-			t.add(new Temporada(i,c));
+			t.add(new Temporada(i, c));
 		}
-		Serie a = new Serie(t, new InformacionSerie("The Office", CategoriaSerie.GOLD, "Comedia", "Serie de comedia sobre el día a día en la oficina", null, actores));
-		
+		Serie a = new Serie(t, new InformacionSerie("The Office", CategoriaSerie.GOLD, "Comedia",
+				"Serie de comedia sobre el día a día en la oficina", null, actores));
+
 		sr.save(a);
 	}
 
@@ -77,16 +76,21 @@ public class Feeder implements CommandLineRunner {
 		List<Importe> importes = new ArrayList<Importe>();
 		List<Importe> importes2 = new ArrayList<Importe>();
 
-		Importe i1,i2,i3;
+		Importe i1, i2, i3;
 
 		Serie serie = sr.findByInfoTitulo("The Office");
 
 		LocalDate sample = LocalDate.of(1789, 7, 14);
 
-
-		i1 = new Importe(LocalDate.now(),serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(0).getNumero(), serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
-		i2 = new Importe(sample,serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
-		i3 = new Importe(sample,serie.getInfo().getTitulo(), serie.getInfo().getCategoria(), serie.getTemporadas().get(1).getNumero(), serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
+		i1 = new Importe(LocalDate.now(), serie.getInfo().getTitulo(), serie.getInfo().getCategoria(),
+				serie.getTemporadas().get(0).getNumero(),
+				serie.getTemporadas().get(0).getCapitulos().get(0).getNumero());
+		i2 = new Importe(sample, serie.getInfo().getTitulo(), serie.getInfo().getCategoria(),
+				serie.getTemporadas().get(1).getNumero(),
+				serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
+		i3 = new Importe(sample, serie.getInfo().getTitulo(), serie.getInfo().getCategoria(),
+				serie.getTemporadas().get(1).getNumero(),
+				serie.getTemporadas().get(1).getCapitulos().get(0).getNumero());
 
 		importes.add(i1);
 		importes.add(i2);
@@ -97,44 +101,48 @@ public class Feeder implements CommandLineRunner {
 		f2.setImportes(importes2);
 		f2.calculaImporteMensual(true);
 
-		List <Factura> lf1 = new ArrayList<>();
-		List <Factura> lf2 = new ArrayList<>();
+		List<Factura> lf1 = new ArrayList<>();
+		List<Factura> lf2 = new ArrayList<>();
 
 		lf1.add(f1);
-		lf2.add(f2);
+		lf1.add(f2);
 
-        Usuario u1 = new Usuario("socio", "kk", false, null);
+		Usuario u1 = new Usuario("socio", "kk", false, null);
 		Usuario u2 = new Usuario("JIMBO", "pringao", true, null);
 
 		u1.setFacturas(lf1);
 		u2.setFacturas(lf2);
 
-        ur.save(u1);
+		ur.save(u1);
 		ur.save(u2);
 	}
-	
+
 	private void test() throws InterruptedException {
 
-		 
 		Optional<Usuario> u1 = ur.findById("socio");
 		Optional<Usuario> u2 = ur.findById("JIMBO");
- 
-		if(u1.isPresent()) System.out.println("Usuario: "+u1.get().getIdUsuario());
-		else System.out.println("No hay tal");
-		if(u2.isPresent()) System.out.println("Usuario: "+u2.get().getIdUsuario());
-		else System.out.println("No hay tal");
-		 
-		//Encontrar una serie de un usuario y metersela a otro, comprobar que no la tenga
+
+		if (u1.isPresent())
+			System.out.println("Usuario: " + u1.get().getIdUsuario());
+		else
+			System.out.println("No hay tal");
+		if (u2.isPresent())
+			System.out.println("Usuario: " + u2.get().getIdUsuario());
+		else
+			System.out.println("No hay tal");
+
+		// Encontrar una serie de un usuario y metersela a otro, comprobar que no la
+		// tenga
 
 		List<Serie> series = sr.findAll();
 
 		Usuario usuario1 = u1.get();
 		Usuario usuario2 = u2.get();
 
-		for (Serie s : series ) {
+		for (Serie s : series) {
 			usuario1.agregarSerie(s);
 			usuario2.agregarSerie(s);
-			
+
 		}
 
 		ur.save(u1.get());

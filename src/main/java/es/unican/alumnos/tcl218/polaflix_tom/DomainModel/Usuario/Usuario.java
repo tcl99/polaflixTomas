@@ -10,7 +10,7 @@ import java.util.Set;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Factura;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros.Importe;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
-import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.CategoriaSerie;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import jakarta.persistence.CascadeType;
@@ -73,11 +73,11 @@ public class Usuario {
         else pendientes.add(s);
     }
 
-    public void marcarCapituloVisto(String titulo, CategoriaSerie cs, int nTemporada, Capitulo c) {
+    public void marcarCapituloVisto(InformacionSerie infoSerie, int nTemporada, Capitulo c) {
         VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
         this.vc.add(visualizacionCapitulo);
         //Se añade el importe al último mes
-        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), titulo, cs, nTemporada, c.getNumero()));
+        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), infoSerie.getTitulo(), infoSerie.getCategoria(), nTemporada, c.getNumero()));
     }
     public Factura getFacturaByFecha(YearMonth fecha) {
         for (Factura f : facturas) {
