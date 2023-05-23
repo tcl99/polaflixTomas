@@ -14,7 +14,7 @@ import jakarta.persistence.OneToMany;
 public class Serie {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected long idSerie;
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -22,17 +22,18 @@ public class Serie {
 
     @Embedded
     private InformacionSerie info;
-    
-    //CONSTRUCTORS
 
-    protected Serie(){}
+    // CONSTRUCTORS
+
+    protected Serie() {
+    }
 
     public Serie(List<Temporada> temporadas, InformacionSerie info) {
         this.temporadas = temporadas;
         this.info = info;
     }
 
-    //GETTERS & SETTERS
+    // GETTERS & SETTERS
 
     public List<Temporada> getTemporadas() {
         return temporadas;
@@ -50,7 +51,11 @@ public class Serie {
         this.info = info;
     }
 
-    //hashCode & equals
+    public long getIdSerie() {
+        return idSerie;
+    }
+
+    // hashCode & equals
 
     @Override
     public int hashCode() {
@@ -73,6 +78,5 @@ public class Serie {
             return false;
         return true;
     }
-
 
 }

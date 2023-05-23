@@ -140,18 +140,12 @@ public class Feeder implements CommandLineRunner {
 		// Encontrar una serie de un usuario y metersela a otro, comprobar que no la
 		// tenga
 
-		List<Serie> series = sr.findAll();
+		Serie s = sr.findByInfoTitulo("The Office");
 
 		Usuario usuario1 = u1.get();
-		Usuario usuario2 = u2.get();
 
-		for (Serie s : series) {
-			usuario1.agregarSerie(s);
-			usuario2.agregarSerie(s);
-
-		}
+		usuario1.agregarSerie(s);
 
 		ur.save(u1.get());
-		ur.save(u2.get());
 	}
 }

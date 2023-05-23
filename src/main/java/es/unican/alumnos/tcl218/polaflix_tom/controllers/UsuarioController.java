@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,8 +26,8 @@ public class UsuarioController {
     @Autowired
     private UsuarioService us;
 
-    @GetMapping("/inicio")
-    ResponseEntity<?> getSeriesUsuario(@RequestParam String usuario) {
+    @GetMapping("/usuarios/{usuario}")
+    ResponseEntity<?> getSeriesUsuario(@PathVariable String usuario) {
         return ResponseEntity.ok(us.getSeriesUsuario(usuario));
     }
 
@@ -38,22 +40,16 @@ public class UsuarioController {
             return ResponseEntity.badRequest().build();
     }
 
-    @PostMapping("/series/anadir")
-    void anadirSerie(@RequestBody Serie s, @RequestBody String usuario) {
-        us.agregarSeriePendientes(s, usuario);
+    @PutMapping("/series")
+    void anadirSerie(@RequestBody Serie s) {
+        us.agregarSeriePendientes(s, "socio");
         // return "redirect:/series";
     }
 
-    @PostMapping("/series")
+    @PostMapping("/series/cap")
     void marcarCapituloVisto(@RequestBody InformacionSerie s, @RequestBody int nTemporada, @RequestBody Capitulo c,
             @RequestBody String usuario) {
         us.marcarCapituloVisto(s, nTemporada, c, usuario);
         // return "redirect:/appointments";
     }
-
-    // Duda de si eta bien traer solo la info y como navegar desde inicio a las
-    // series
-    /**
-     * duda de si aplicar bidirecionalidad para resolver esto
-     */
 }

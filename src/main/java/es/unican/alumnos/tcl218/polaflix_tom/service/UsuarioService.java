@@ -19,40 +19,41 @@ import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
 
 @Service
 public class UsuarioService {
-    
+
     @Autowired
     protected UsuarioRepository ur;
 
-    public List<Set<Serie>> getSeriesUsuario (String nombreUsuario) {
-        /** 
-         * Se devuelve en una lista, los tres sets de las series del usuario 
+    public List<Set<Serie>> getSeriesUsuario(String nombreUsuario) {
+        /**
+         * Se devuelve en una lista, los tres sets de las series del usuario
          * Se devuelve solo la información porque se ha decidido cargar una serie solo
          * cuando se acceda individualmente a ella.
          * 
          * Lo que se hace es buscar al usuario, si se encuentra, se mete en 3 sets
-         * la información de las series, que a su vez se meten en la lista que va a devolverse
-        */
+         * la información de las series, que a su vez se meten en la lista que va a
+         * devolverse
+         */
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
-        if(!isUser.isPresent()) {
+        if (!isUser.isPresent()) {
             return null;
         }
         Usuario u = isUser.get();
 
-        List< Set<Serie> > listaSeriesUsuario = new ArrayList<>();
+        List<Set<Serie>> listaSeriesUsuario = new ArrayList<>();
 
         listaSeriesUsuario.add(u.getEmpezadas().stream().collect(Collectors.toSet()));
         listaSeriesUsuario.add(u.getPendientes().stream().collect(Collectors.toSet()));
         listaSeriesUsuario.add(u.getTerminadas().stream().collect(Collectors.toSet()));
-        
+
         return listaSeriesUsuario;
     }
 
-    public Factura getFactura (String nombreUsuario, YearMonth fecha) {
-        /** 
-         *  Devuelve una factura por fecha
-        */
+    public Factura getFactura(String nombreUsuario, YearMonth fecha) {
+        /**
+         * Devuelve una factura por fecha
+         */
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
-        if(!isUser.isPresent()) {
+        if (!isUser.isPresent()) {
             return null;
         }
         Usuario u = isUser.get();
@@ -60,20 +61,21 @@ public class UsuarioService {
         return u.getFacturaByFecha(fecha);
     }
 
-    
-    public void agregarSeriePendientes (Serie s, String nombreUsuario) {
+    public void agregarSeriePendientes(Serie s, String nombreUsuario) {
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
-        if(!isUser.isPresent()) {
+        if (!isUser.isPresent()) {
             return;
         }
         Usuario u = isUser.get();
 
         u.agregarSerie(s);
+
+        ur.save(u);
     }
 
-    public void marcarCapituloVisto (InformacionSerie s, int nTemporada, Capitulo c, String nombreUsuario) {
+    public void marcarCapituloVisto(InformacionSerie s, int nTemporada, Capitulo c, String nombreUsuario) {
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
-        if(!isUser.isPresent()) {
+        if (!isUser.isPresent()) {
             return;
         }
         Usuario u = isUser.get();
@@ -81,4 +83,3 @@ public class UsuarioService {
         u.marcarCapituloVisto(s, nTemporada, c);
     }
 }
- 
