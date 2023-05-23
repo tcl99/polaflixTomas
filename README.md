@@ -114,3 +114,5 @@ Se han añadido los primeros métodos de búsqueda, basados en personalización 
 ### ACTUALIZACIONES IMPORTANTES
 
 - Se ha eliminado el repositorio de Facturas, no se considera necesario pues las facturas se cargan con el usuario
+
+# PEMDIENTE CORREGIR TODOS LOS ERRORES
