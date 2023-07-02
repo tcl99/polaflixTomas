@@ -1,230 +1,350 @@
 # MODELO DE LA API REST
 
-## Recurso: /inicio
+## Recurso: /usuarios/{usuario}
 
 Verbos Aceptados: GET
 
-- GET /inicio - Devuelve todas las series del usuario: empezadas, terminadas y pendientes.
+- GET /usuarios/{usuario} - Devuelve todas las series del usuario: empezadas, terminadas y pendientes.
 <hr>
 
-Parámetros: No hay
+Parámetros: no hay
 
 <hr>
 
 Respuestas:
 
 - 200 Ok
+- 404 Not Found
+- 400 Bad Request
+<hr>
+
+Modelo de Respuesta:
+
+```json
+[
+  [],
+  [
+    {
+      "idSerie": 1,
+      "info": {
+        "categoria": "GOLD",
+        "titulo": "The Office",
+        "genero": "Comedia",
+        "descripcion": "Serie de comedia sobre el día a día en la oficina",
+        "creadores": null,
+        "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
+      },
+      "temporadas": [
+        {
+          "numero": 1,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "capitulos": [
+            {
+              "numero": 22,
+              "titulo": "Casino Night",
+              "descripcion": "zzz",
+              "enlace": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "idSerie": 3,
+      "info": {
+        "categoria": "SILVER",
+        "titulo": "Oasis",
+        "genero": "Musica",
+        "descripcion": "Documental sobre la banda británica",
+        "creadores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"],
+        "actores": ["Bonehead", "Guigsy", "Alan White", "Liam", "Noel"]
+      },
+      "temporadas": [
+        {
+          "numero": 1,
+          "capitulos": [
+            {
+              "numero": 1,
+              "titulo": "Maybeee",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 2,
+              "titulo": "Slide Away",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 3,
+              "titulo": "Cloudburst",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 4,
+              "titulo": "Songbird",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "capitulos": [
+            {
+              "numero": 1,
+              "titulo": "Maybeee",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 2,
+              "titulo": "Slide Away",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 3,
+              "titulo": "Cloudburst",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 4,
+              "titulo": "Songbird",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "capitulos": [
+            {
+              "numero": 1,
+              "titulo": "Maybeee",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 2,
+              "titulo": "Slide Away",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 3,
+              "titulo": "Cloudburst",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            },
+            {
+              "numero": 4,
+              "titulo": "Songbird",
+              "descripcion": "Descrpcion",
+              "enlace": null
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  []
+]
+```
+
+## Recurso: /usuarios/{usuario}/facturas
+
+Verbos Aceptados: GET
+
+- GET /usuarios/{usuario}/facturas - Devuelve la factura del mes indicado
+
+<hr>
+
+Parámetros:
+
+- fecha: fecha del mes de la factura
+
+<hr>
+
+Respuestas:
+
+- 200 Ok
+- 400 Bad Request
+- 404 Not Found
 <hr>
 
 Modelo de Respuesta:
 
 ```json
 {
-  "empezadas": [
+  "fecha": "2023-07",
+  "importeMensual": 3.0,
+  "importes": [
     {
-      "id": 1,
-      "titulo": "The Office",
-      "categoria": 2,
-      "genero": "comedia",
-      "descripcion": "Serie de comedia sobre el día a día en la oficina",
-      "creadores": ["Ricky Gervais", "Stephen Merchant"],
-      "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
-    }
-  ],
-  "terminadas": [
-    {
-      "id": 2,
-      "titulo": "Sons of Anarchy",
-      "categoria": 2,
-      "genero": "drama",
-      "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
-      "creadores": ["Kurt Sutter"],
-      "actores": ["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
+      "fechaVisualizacion": "2023-07-01",
+      "nombreSerie": "The Office",
+      "nTemporada": 1,
+      "nCapitulo": 22,
+      "cargo": 1.5
     },
     {
-      "id": 3,
-      "titulo": "Breaking Bad",
-      "categoria": 2,
-      "genero": "drama",
-      "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
-      "creadores": ["Vince Gilligan"],
-      "actores": ["Bryan Cranston", "Aaron Paul"]
+      "fechaVisualizacion": "1789-07-13",
+      "nombreSerie": "The Office",
+      "nTemporada": 2,
+      "nCapitulo": 22,
+      "cargo": 1.5
     }
-  ],
-  "pendientes": []
+  ]
 }
 ```
+
+## Recurso: /usuarios/{usuario}/series/capitulos
+
+Verbos Aceptados: GET
+
+- GET /usuarios/{usuario}/series/capitulos - Devuelve los capitulos vistos de un usuario
+
+<hr>
+
+Parámetros:
+
+- fecha: fecha del mes de la factura
+
+<hr>
+
+Respuestas:
+
+- 200 Ok
+- 400 Bad Request
+- 404 Not Found
+<hr>
+
+Modelo de Respuesta:
+
+```json
+[16, 24]
+```
+
+## Recurso: /usuarios/{usuario}/series
+
+Verbos Aceptados: PUT
+
+- PUT /usuarios/{usuario}/series - Agrega una serie a la lista de pendientes del usuario
+
+<hr>
+
+Parámetros:
+
+- serie: la serie a agregar
+
+<hr>
+
+Respuestas:
+
+- 200 Ok
+- 400 Bad Request
+- 404 Not Found
+<hr>
+
+## Recurso: /usuarios/{usuario}/series/{idCapitulo}
+
+Verbos Aceptados: PUT
+
+- PUT /usuarios/{usuario}/series/{idCapitulo} - Agrega una serie a la lista de pendientes del usuario
+
+<hr>
+
+Parámetros:
+
+- No hay
+
+<hr>
+
+Respuestas:
+
+- 200 Ok
+- 400 Bad Request
+- 404 Not Found
+<hr>
 
 ## Recurso: /series
 
 Verbos Aceptados: GET
 
-- GET /catalogo - Devuelve todas las series.
-
-<hr>
-
-Parámetros: No hay
-
-<hr>
-
-Respuestas:
-
-- 200 Ok
-<hr>
-
-Modelo de Respuesta:
-
-```json
-[
-  {
-    "id": 1,
-    "titulo": "The Office",
-    "categoria": 2,
-    "genero": "comedia",
-    "descripcion": "Serie de comedia sobre el día a día en la oficina",
-    "creadores": ["Ricky Gervais", "Stephen Merchant"],
-    "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
-  },
-  {
-    "id": 2,
-    "titulo": "Sons of Anarchy",
-    "categoria": 2,
-    "genero": "drama",
-    "descripcion": "La serie se centra en la vida de Jackson 'Jax' Teller, un joven miembro del club de motoristas SAMCRO que comienza a cuestionarse los actos del club y los suyos propios",
-    "creadores": ["Kurt Sutter"],
-    "actores": ["Charlie Hunnam", "Katey Sagal", "Ron Perlman"]
-  },
-  {
-    "id": 3,
-    "titulo": "Breaking Bad",
-    "categoria": 2,
-    "genero": "drama",
-    "descripcion": "La serie narra las historias de Walter White, un profesor de química que después de ser diagnosticado de un cáncer pulmonar inoperable termina vendiendo metanfetamina, y de Jesse Pinkman, su exalumno. Breaking Bad y su reparto estuvieron durante cinco años en boca de todos",
-    "creadores": ["Vince Gilligan"],
-    "actores": ["Bryan Cranston", "Aaron Paul"]
-  }
-]
-```
-
-## Recurso: /series/{titulo}
-
-Verbos Aceptados: GET
-
-- GET /catalogo/{titulo} - Devuelve la serie que coincide con ese título.
+- GET /series - Devuelve todas las series si no hay parámetro, si lo hay, devuelve una serie si el parámetro es un título, o una lista de series si
 
 <hr>
 
 Parámetros:
 
-- Título: Nombre de la serie
-
-<hr>
-
-Respuestas:
-
-- 200 Ok
-- 400 Bad Request
-- 404 Not Found
-
-<hr>
-
-Modelo de Respuesta:
-
-```json
-   {
-        "id": 1,
-        "titulo": "The Office",
-        "categoria": 2,
-        "genero": "comedia",
-        "descripcion": "Serie de comedia sobre el día a día en la oficina",
-        "creadores": ["Ricky Gervais", "Stephen Merchant"],
-        "actores":["Jenna Fischer", "Steve Carrell", "John Krasinski"],
-        "temporadas": [
-            "1": [
-                {
-                    "id": 1,
-                    "titulo": "Pilot",
-                    "numero": 1,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                },
-                {
-                    "id": 2,
-                    "titulo": "Diversity Day",
-                    "numero": 2,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                }
-            ],
-            "2": [
-                {
-                    "id": 3,
-                    "titulo": "The Dundies",
-                    "numero": 1,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                }
-            ]
-        ]
-    }
-
-```
-
-## Recurso: /series/{inicial}
-
-Verbos Aceptados: GET
-
-- GET /series/{inicial} - Devuelve las series que comienzan por la inicial
-
-Parámetros:
-
-- inicial: Primera letra del título de la serie
-
-<hr>
-
-Respuestas:
-
-- 200 Ok
-- 400 Bad Request
-- 404 Not Found
-
-<hr>
-
-Modelo de Respuesta:
-
-```json
-[
-  {
-    "id": 1,
-    "titulo": "The Office",
-    "categoria": 2,
-    "genero": "comedia",
-    "descripcion": "Serie de comedia sobre el día a día en la oficina",
-    "creadores": ["Ricky Gervais", "Stephen Merchant"],
-    "actores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"]
-  },
-  {
-    "id": 12,
-    "titulo": "The Good Doctor",
-    "categoria": 1,
-    "genero": "drama",
-    "descripcion": "Serie sobre la vida de un médico genio con autismo",
-    "creadores": ["David Shore"],
-    "actores": ["Freddie Highmore"]
-  }
-]
-```
-
-## Recurso: /series/{id}
-
-Verbos Aceptados: PUT, GET
-
-- GET /series/{id} - Devuelve serie por id
-- PUT /series/{id} - Agregar serie a pendientes
-
-Parámetros:
-
-- ID: Identificador de la serie
+- titulo: Si es una letra o dígito, devuelve la lista de series que empiece por dicho caracter, si es un nombre, devuelve la serie que coincida con ese nombre y si está vacio, devuelve todas las series.
 
 <hr>
 
@@ -234,93 +354,111 @@ Respuestas:
 - 204 No Content
 - 400 Bad Request
 - 404 Not Found
-
 <hr>
 
 Modelo de Respuesta:
 
 ```json
-    {
-        "id": 1,
-        "titulo": "The Office",
-        "categoria": 2,
-        "genero": "comedia",
-        "descripcion": "Serie de comedia sobre el día a día en la oficina",
-        "creadores": ["Ricky Gervais", "Stephen Merchant"],
-        "actores":["Jenna Fischer", "Steve Carrell", "John Krasinski"],
-        "temporadas": [
-            "1": [
-                {
-                    "id": 1,
-                    "titulo": "Pilot",
-                    "numero": 1,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                },
-                {
-                    "id": 2,
-                    "titulo": "Diversity Day",
-                    "numero": 2,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                }
-            ],
-            "2": [
-                {
-                    "id": 3,
-                    "titulo": "The Dundies",
-                    "numero": 1,
-                    "descripcion": "zzz",
-                    "enlace": "link",
-                }
-            ]
+[
+  {
+    "idSerie": 3,
+    "info": {
+      "categoria": "SILVER",
+      "titulo": "Oasis",
+      "genero": "Musica",
+      "descripcion": "Documental sobre la banda británica",
+      "creadores": ["Jenna Fischer", "Steve Carrell", "John Krasinski"],
+      "actores": ["Bonehead", "Guigsy", "Alan White", "Liam", "Noel"]
+    },
+    "temporadas": [
+      {
+        "numero": 1,
+        "capitulos": [
+          {
+            "numero": 1,
+            "titulo": "Maybeee",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 2,
+            "titulo": "Slide Away",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 3,
+            "titulo": "Cloudburst",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 4,
+            "titulo": "Songbird",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          }
         ]
-    }
-```
-
-## Recurso: /facturas/{date}
-
-Verbos Aceptados: GET
-
-- GET /facturas/{date} - Devuelve la factura del mes indicado
-
-<hr>
-
-Parámetros: Fecha de la factura
-
-<hr>
-
-Respuestas:
-
-- 200 Ok
-- 400 Bad Request
-- 404 Not Found
-<hr>
-
-Modelo de Respuesta:
-
-```json
-    {
-        "id": 1,
-        "fecha": 2023-04-1T15:30:43.511Z,
-        "importe_mensual": 20.0,
-        "importes": [
-            {
-                "id": 1,
-                "cargo": 1.5,
-                "fecha_visualizacion": 2023-04-2T15:30:43.511Z,
-                "n_capitulo": 22,
-                "n_temporada": 1,
-                "nombre_serie": "The Office"
-            },
-            {
-                "id": 2,
-                "cargo": 1.5,
-                "fecha_visualizacion": 2023-04-3T15:30:43.511Z,
-                "n_capitulo": 1,
-                "n_temporada": 2,
-                "nombre_serie": "The Office"
-            }
+      },
+      {
+        "numero": 2,
+        "capitulos": [
+          {
+            "numero": 1,
+            "titulo": "Maybeee",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 2,
+            "titulo": "Slide Away",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 3,
+            "titulo": "Cloudburst",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 4,
+            "titulo": "Songbird",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          }
         ]
-    }
+      },
+      {
+        "numero": 3,
+        "capitulos": [
+          {
+            "numero": 1,
+            "titulo": "Maybeee",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 2,
+            "titulo": "Slide Away",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 3,
+            "titulo": "Cloudburst",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          },
+          {
+            "numero": 4,
+            "titulo": "Songbird",
+            "descripcion": "Descrpcion",
+            "enlace": null
+          }
+        ]
+      }
+    ]
+  }
+]
 ```
