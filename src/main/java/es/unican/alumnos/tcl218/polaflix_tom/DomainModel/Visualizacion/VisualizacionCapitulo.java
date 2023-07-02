@@ -11,7 +11,7 @@ import jakarta.persistence.ManyToOne;
 public class VisualizacionCapitulo {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -39,14 +39,6 @@ public class VisualizacionCapitulo {
         this.tiempoVisionado = 0;
         this.duracion = 0;
     }
-
-
-    //OPERATIONS
-
-    public int tiempoRestante() {
-        return duracion - tiempoVisionado;
-    }
-
 
     //GETTERS & SETTERS
 
@@ -90,8 +82,6 @@ public class VisualizacionCapitulo {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((usuario == null) ? 0 : usuario.hashCode());
-        result = prime * result + ((capitulo == null) ? 0 : capitulo.hashCode());
         return result;
     }
 
@@ -109,17 +99,9 @@ public class VisualizacionCapitulo {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (usuario == null) {
-            if (other.usuario != null)
-                return false;
-        } else if (!usuario.equals(other.usuario))
-            return false;
-        if (capitulo == null) {
-            if (other.capitulo != null)
-                return false;
-        } else if (!capitulo.equals(other.capitulo))
-            return false;
         return true;
     }
+
+
 
 }

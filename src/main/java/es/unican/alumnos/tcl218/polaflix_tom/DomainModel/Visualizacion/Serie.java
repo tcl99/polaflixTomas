@@ -2,6 +2,8 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -11,11 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonPropertyOrder({ "idSerie", "info", "temporadas"})
 public class Serie {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected long idSerie;
+    private long idSerie;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<Temporada> temporadas;

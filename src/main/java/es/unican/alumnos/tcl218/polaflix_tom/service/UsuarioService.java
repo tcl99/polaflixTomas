@@ -15,6 +15,7 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Usuario.Usuario;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Capitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.InformacionSerie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
+import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
 
 @Service
@@ -23,6 +24,7 @@ public class UsuarioService {
     @Autowired
     protected UsuarioRepository ur;
 
+    
     public List<Set<Serie>> getSeriesUsuario(String nombreUsuario) {
         /**
          * Se devuelve en una lista, los tres sets de las series del usuario
@@ -81,5 +83,20 @@ public class UsuarioService {
         Usuario u = isUser.get();
 
         u.marcarCapituloVisto(s, nTemporada, c);
+
+        ur.save(u);
     }
+
+    public List<Long> getCapitulosUsuario(String usuario) {
+
+        Optional<Usuario> isUser = ur.findById(usuario);
+        if (!isUser.isPresent()) {
+            return null;
+        }
+        Usuario u = isUser.get();
+
+        return u.getVc().stream().map(VisualizacionCapitulo::getCapitulo).map(Capitulo::getIdCapitulo).collect(Collectors.toList());
+    }
+
+    
 }

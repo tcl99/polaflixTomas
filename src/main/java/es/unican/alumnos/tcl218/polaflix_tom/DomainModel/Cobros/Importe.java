@@ -13,7 +13,7 @@ public class Importe {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    protected long idImporte;
+    private long idImporte;
 
     private LocalDate fechaVisualizacion;
     private String nombreSerie;

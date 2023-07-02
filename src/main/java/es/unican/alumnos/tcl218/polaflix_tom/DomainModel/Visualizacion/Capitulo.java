@@ -10,7 +10,7 @@ public class Capitulo {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    protected long idCapitulo;
+    private long idCapitulo;
 
     private int numero;
     private String titulo;
@@ -57,6 +57,11 @@ public class Capitulo {
     public void setEnlace(String enlace) {
         this.enlace = enlace;
     }
+
+    public long getIdCapitulo() {
+        return idCapitulo;
+    }
+
 
 
     //hashCode & equals

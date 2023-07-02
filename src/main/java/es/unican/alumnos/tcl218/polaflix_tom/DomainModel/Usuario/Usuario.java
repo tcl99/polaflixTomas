@@ -15,6 +15,7 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -40,7 +41,7 @@ public class Usuario {
      * Se ha decidido dejarlo por defecto todo, por lo tanto son eager
      */
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<VisualizacionCapitulo> vc = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -74,11 +75,14 @@ public class Usuario {
     }
 
     public void marcarCapituloVisto(InformacionSerie infoSerie, int nTemporada, Capitulo c) {
+        System.out.println( c.getTitulo());
         VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
         this.vc.add(visualizacionCapitulo);
         //Se añade el importe al último mes
         facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), infoSerie.getTitulo(), infoSerie.getCategoria(), nTemporada, c.getNumero()));
+        facturas.get(facturas.size()-1).calculaImporteMensual(plan);
     }
+    
     public Factura getFacturaByFecha(YearMonth fecha) {
         for (Factura f : facturas) {
             if(f.getFecha().equals(fecha)) return f;
@@ -150,6 +154,14 @@ public class Usuario {
 
     public void setFacturas(List<Factura> facturas) {
         this.facturas = facturas;
+    }
+
+    public List<VisualizacionCapitulo> getVc() {
+        return vc;
+    }
+
+    public void setVc(List<VisualizacionCapitulo> vc) {
+        this.vc = vc;
     }
 
 

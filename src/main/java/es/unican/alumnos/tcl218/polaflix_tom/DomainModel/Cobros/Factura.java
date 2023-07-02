@@ -3,6 +3,8 @@ package es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Cobros;
 import java.time.YearMonth;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,11 +13,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 
 @Entity
+@JsonPropertyOrder({ "idFactura", "fecha", "importeMensual", "importes" })
 public class Factura {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    protected long idFactura;
+    private long idFactura;
 
     private YearMonth fecha;
     private float importeMensual;
