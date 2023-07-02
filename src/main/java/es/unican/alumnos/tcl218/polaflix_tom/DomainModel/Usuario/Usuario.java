@@ -15,7 +15,6 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -41,7 +40,7 @@ public class Usuario {
      * Se ha decidido dejarlo por defecto todo, por lo tanto son eager
      */
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<VisualizacionCapitulo> vc = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
@@ -75,7 +74,6 @@ public class Usuario {
     }
 
     public void marcarCapituloVisto(InformacionSerie infoSerie, int nTemporada, Capitulo c) {
-        System.out.println( c.getTitulo());
         VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
         this.vc.add(visualizacionCapitulo);
         //Se añade el importe al último mes

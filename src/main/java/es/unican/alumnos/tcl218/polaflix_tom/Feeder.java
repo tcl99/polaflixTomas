@@ -142,7 +142,6 @@ public class Feeder implements CommandLineRunner {
 		lf1.add(f1);
 		lf1.add(f2);
 
-		//lf2.add(f3);
 		lf2.add(f4);
 
 		Usuario u1 = new Usuario("socio", "kk", false, null);
