@@ -17,9 +17,15 @@ import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Informaci
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.Serie;
 import es.unican.alumnos.tcl218.polaflix_tom.DomainModel.Visualizacion.VisualizacionCapitulo;
 import es.unican.alumnos.tcl218.polaflix_tom.repositories.UsuarioRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceUnit;
 
 @Service
+
 public class UsuarioService {
+    @PersistenceUnit
+    EntityManagerFactory emf;
 
     @Autowired
     protected UsuarioRepository ur;
@@ -54,6 +60,7 @@ public class UsuarioService {
         /**
          * Devuelve una factura por fecha
          */
+        
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
         if (!isUser.isPresent()) {
             return null;
@@ -64,6 +71,9 @@ public class UsuarioService {
     }
 
     public void agregarSeriePendientes(Serie s, String nombreUsuario) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
         if (!isUser.isPresent()) {
             return;
@@ -73,9 +83,15 @@ public class UsuarioService {
         u.agregarSerie(s);
 
         ur.save(u);
+
+        em.getTransaction().commit();
+
     }
 
     public void marcarCapituloVisto(InformacionSerie s, int nTemporada, Capitulo c, String nombreUsuario) {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+
         Optional<Usuario> isUser = ur.findById(nombreUsuario);
         if (!isUser.isPresent()) {
             return;
@@ -85,6 +101,9 @@ public class UsuarioService {
         u.marcarCapituloVisto(s, nTemporada, c);
 
         ur.save(u);
+        
+        em.getTransaction().commit();
+
     }
 
     public List<Long> getCapitulosUsuario(String usuario) {

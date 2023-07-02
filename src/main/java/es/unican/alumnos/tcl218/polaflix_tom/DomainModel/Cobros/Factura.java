@@ -45,14 +45,16 @@ public class Factura {
     public void calculaImporteMensual(boolean plan) {
         if(plan) this.importeMensual = 20f;
         else {
+            this.importeMensual = 0;
             for (Importe importe : importes) {
                 this.importeMensual += importe.getCargo();
             }
         }
     }
 
-    public void agregarImporte (Importe i) {
+    public void agregarImporte (Importe i, boolean plan) {
         this.importes.add(i);
+        if(!plan) this.importeMensual += i.getCargo();
     }
 
     //GETTERS & SETTERS

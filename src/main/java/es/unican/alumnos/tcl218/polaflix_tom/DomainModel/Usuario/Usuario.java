@@ -77,8 +77,7 @@ public class Usuario {
         VisualizacionCapitulo visualizacionCapitulo = new VisualizacionCapitulo(this, c);
         this.vc.add(visualizacionCapitulo);
         //Se añade el importe al último mes
-        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), infoSerie.getTitulo(), infoSerie.getCategoria(), nTemporada, c.getNumero()));
-        facturas.get(facturas.size()-1).calculaImporteMensual(plan);
+        facturas.get(facturas.size()-1).agregarImporte(new Importe(LocalDate.now(), infoSerie.getTitulo(), infoSerie.getCategoria(), nTemporada, c.getNumero()), plan);
     }
     
     public Factura getFacturaByFecha(YearMonth fecha) {
